@@ -21,10 +21,23 @@ class BadgesScreen extends React.Component {
 
     componentDidMount() {
         this.fetchdata();
-        this.setFetchInterval();
+        this.focusEvent();
+        this.blurEvent();
+    }
+
+    focusEvent = () => {
+        this.focusListener = this.props.navigation.addListener('focus', () => {
+            this.setFetchInterval();
+        });
     }
     
-    setFetchInterval = () => { //is this correct?
+    blurEvent = () => {
+        this.blurListener = this.props.navigation.addListener('blur', () => {
+            clearInterval(this.interval)
+        });
+    }
+
+    setFetchInterval = () => { 
         this.interval = setInterval(this.fetchdata, 3000)
     };
 
@@ -68,7 +81,8 @@ class BadgesScreen extends React.Component {
     };
 
     componentWillUnmount(){
-        clearInterval(this.interval)
+        this.focusListener();
+        this.blurEvent()
     }
 
     render() {
