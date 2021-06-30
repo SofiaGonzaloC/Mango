@@ -68,6 +68,12 @@ class BadgesScreen extends React.Component {
         });
 
         this.setState({badges: badgesFiltered})
+
+        if(query){
+            clearInterval(this.interval)
+        } else {
+            this.setFetchInterval()
+        }
     }
 
 

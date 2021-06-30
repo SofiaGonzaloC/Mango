@@ -25,7 +25,7 @@ class BadgesSearch extends React.Component{
                     onChangeText={this.handleText}
                     value={query}
                     placeholder = "Search a badge"
-                    placeholderTextColor={Colors.white}
+                    placeholderTextColor={Colors.black}
                 />
             </View>
         );
@@ -36,15 +36,15 @@ const styles = StyleSheet.create({
     container:{
         width: '95%',
         marginTop: 10,
-        color: Colors.white,
+        color: Colors.black,
     },
     TextInput:{
         borderColor: Colors.black,
         borderWidth: 1,
         borderRadius: 10,
         paddingHorizontal: 16,
-        backgroundColor: Colors.red,
-        color: Colors.blue,
+        backgroundColor: Colors.yellow,
+        color: Colors.black,
     },
 });
 
