@@ -20,7 +20,7 @@ class BadgesScreen extends React.Component {
     state = {
         loading: false,
         badge: undefined,
-        badgeCopy: undefined,
+        badgesCopy: undefined,
     };
 
     componentDidMount() {
@@ -49,7 +49,7 @@ class BadgesScreen extends React.Component {
         this.setState({ loading: true })
         let response = await Http.instance.get_all()
         response = response.reverse()
-        this.setState({ loading: false, badges: response, badgeCopy: response })
+        this.setState({ loading: false, badges: response, badgesCopy: response })
     };
 
     handlePress = item => {
@@ -63,8 +63,8 @@ class BadgesScreen extends React.Component {
     handleChange = query =>{
         const {badgesCopy} = this.state;
 
-        const badgesFiltered = badgesCopy.filter(badge => {
-            return badges.badge.name.toLowerCase().includes(query.toLowerCase())
+        const badgesFiltered = badgesCopy.filter( badge => {
+            return badge.name.toLowerCase().includes(query.toLowerCase())
         });
 
         this.setState({badges: badgesFiltered})

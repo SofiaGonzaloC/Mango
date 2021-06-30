@@ -5,7 +5,7 @@ import Colors from '../../res/Colors'
 class BadgesSearch extends React.Component{
 
     state = {
-        query:"",
+        query:'',
     }
 
     handleText = query =>{
