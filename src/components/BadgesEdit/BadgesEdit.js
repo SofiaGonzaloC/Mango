@@ -81,7 +81,6 @@ class BadgesEdit extends React.Component {
                                 })
                             }}
                         />
-                        {/* City */}
                         <Text style={styles.inputText}>{badge.ciy}</Text>
                         <TextInput
                             style={styles.form}
