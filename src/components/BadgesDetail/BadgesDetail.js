@@ -1,6 +1,6 @@
 import React from "react"
 import { 
-    ViewBase, // This crashes the app
+    View, // This crashes the app
     Text, 
     StyleSheet, 
     Image 
@@ -28,7 +28,7 @@ class BadgesDetail extends React.Component{
         const {badge} = this.state
 
         return(
-            <View style={StyleSheet.container}>
+            <View style={styles.container}>
                 <View style={styles.badge}>
                     <Image 
                         style={styles.header} 
@@ -36,7 +36,7 @@ class BadgesDetail extends React.Component{
                     />
                     <Image 
                         style={styles.profileImage} 
-                        source={{uri: `${badge.profile_picture}`}}
+                        source={{uri: `${badge.profile_picture_url}`}}
                     />
                 </View>
                 <View style={styles.userInfo}>
@@ -67,7 +67,7 @@ class BadgesDetail extends React.Component{
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.black,
     },
     badge: {
         flex: 1,
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
         borderWidth: 5,
         borderColor: Colors.white,
         position: 'absolute',
-        top: '145',
+        top: '23%',
         left: '21%',
     },
     userInfo: {
@@ -102,7 +102,8 @@ const styles = StyleSheet.create({
     name: {
         fontSize: 28,
         fontWeight: 'bold',
-        color: Colors.black,
+        color: Colors.white,
+        marginTop: 20
     },
     age: {
         fontSize: 28,
@@ -113,7 +114,7 @@ const styles = StyleSheet.create({
         marginTop: 10,
         fontSize: 18,
         textAlign: 'center',
-        color: Colors.black,
+        color: Colors.white,
     },
     data: {
         padding: 20,
@@ -133,7 +134,7 @@ const styles = StyleSheet.create({
         fontSize: 28,
         fontWeight: 'bold',
         marginHorizontal: 25,
-        color: Colors.black
+        color: Colors.white
     },
     smallText:{
         color: Colors.yellow
