@@ -15,7 +15,7 @@ class Http {
     }
     get = async badgeId => {
         try{
-            let request = await fetch('${BASE_URL}/_id:${badgeId}/')
+            let request = await fetch(`${BASE_URL}/_id:${badgeId}/`)
             let response = await request.json()
             return response
         }catch(err){
@@ -25,7 +25,7 @@ class Http {
     }   
     post = async badge => {
         try{
-            let request = await fetch('${BASE_URL}/new/', {
+            let request = await fetch(`${BASE_URL}/new/`, {
                 method: 'POST',
                 body: JSON.stringify(badge),
             })
@@ -38,7 +38,7 @@ class Http {
     }
     put = async (badgeId, body) => {
         try{
-            let request = await fetch('${BASE_URL}/_id:${badgeId}/', {
+            let request = await fetch(`${BASE_URL}/_id:${badgeId}/`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
