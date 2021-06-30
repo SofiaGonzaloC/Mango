@@ -1,5 +1,10 @@
 import React from "react"
-import { ViewBase, Text, StyleSheet, Image } from "react-native"
+import { 
+    View, // This crashes the app
+    Text, 
+    StyleSheet, 
+    Image 
+} from "react-native"
 import Colors from '../../res/Colors'
 
 class BadgesDetail extends React.Component{
