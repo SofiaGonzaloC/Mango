@@ -2,8 +2,10 @@
 
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
-import BadgeLanding from '../BadgesLanding/BadgeLanding'
+import BadgesLanding from '../BadgesLanding/BadgesLanding'
 import BadgesDetail from '../BadgesDetail/BadgesDetail'
+import BadgesScreen from '../BadgesScreen/BadgesScreen'
+import BadgesEdit from '../BadgesEdit/BadgesEdit'
 import Colors from "../../res/Colors"
 
 const Stack = createStackNavigator()
@@ -13,14 +15,14 @@ const BadgesStack = () =>{
         <Stack.Navigator
             screenOptions={{
                 headerStyle:{
-                    backgroundColor: Colors.white,
-                    shadowColor: Colors.white,
+                    backgroundColor: Colors.black,
+                    shadowColor: Colors.black,
                 },
                 headerTintColor: Colors.white,
             }}>
             <Stack.Screen 
                 name="Landing" 
-                component={BadgeLanding} 
+                component={BadgesLanding} 
             />
             <Stack.Screen name="Badges" component={BadgesScreen} />
             <Stack.Screen name="BadgesDetail" component={BadgesDetail} />
