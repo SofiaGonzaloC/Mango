@@ -1,6 +1,6 @@
 import React from "react"
 import { 
-    View, // This crashes the app
+    View,
     Text, 
     StyleSheet, 
     Image 
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     },
     header: {
         width: '100%',
-        height: '40%',
+        height: '100%',
         borderTopLeftRadius: 25,
         borderTopRightRadius: 25,
     },
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
         resizeMode: 'cover',
         borderRadius: 100,
         borderWidth: 5,
-        borderColor: Colors.white,
+        borderColor: Colors.red,
         position: 'absolute',
         top: '23%',
         left: '21%',
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     age: {
         fontSize: 28,
         margin: 20,
-        color: Colors.red,   
+        color: Colors.white,   
     },
     city: {
         marginTop: 10,
