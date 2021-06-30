@@ -1,6 +1,4 @@
 import React from "react";
-import { styles } from 'ansi-colors';
-import { defer } from 'lodash';
 import Colors from "../../res/Colors"
 import {
     View,
@@ -11,11 +9,11 @@ import {
     StatusBar
 } from 'react-native'
 
-const ImageBackground = {
+const imageBackground = {
     uri: 'https://images.unsplash.com/photo-1494972308805-463bc619d34e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjZ8fGZsb3dlcnN8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
 };
 
-class BadgeLanding extends React.Component {
+class BadgesLanding extends React.Component {
 
     handlePress = () => {
         this.props.navigation.replace('Badges')
@@ -23,9 +21,9 @@ class BadgeLanding extends React.Component {
 
     render() {
         return (
-            <View style={StyleSheet.container}>
+            <View style={styles.container}>
                 <StatusBar backgroundColor="transparent" translucent={true} />
-                <ImageBackground source={importBackground} style={styles.image}>
+                <ImageBackground source={imageBackground} style={styles.image}>
                     <View style={styles.layerColor}>
                         <Text style={styles.title}>
                             Welcome {'\n'} to my {'\n'} ...
@@ -48,7 +46,7 @@ const styles = StyleSheet.create({
     },
     layerColor: {
         flex: 2,
-        backgroundColor: '#1A535C06',
+        backgroundColor: '#1A535C66',
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -68,7 +66,7 @@ const styles = StyleSheet.create({
         marginTop: 50,
         borderRadius: 15,
         backgroundColor: Colors.blue,
-        borderColor: Colors.white,
+        borderColor: Colors.black,
         borderWidth: 1,
     },
     buttonText: {
@@ -80,4 +78,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default BadgeLanding
+export default BadgesLanding
