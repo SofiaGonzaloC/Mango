@@ -4,12 +4,13 @@ import {
     Text,
     ActivityIndicator,
     StyleSheet,
-    Flatlist,
+    FlatList,
     Alert,
     TouchableOpacityBase,
 } from 'react-native'
 import Colors from "../../res/Colors"
 import Http from "../../libs/http"
+import BadgesItem from "./BadgesItem"
 
 class BadgesScreen extends React.Component {
 
@@ -23,7 +24,7 @@ class BadgesScreen extends React.Component {
         this.setFetchInterval();
     }
     
-    FetchInterval = () => { //is this correct?
+    setFetchInterval = () => { //is this correct?
         this.interval = setInterval(this.fetchdata, 3000)
     };
 
@@ -111,7 +112,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: Colors.charade,
+        backgroundColor: Colors.black,
     },
     horizontal: {
         justifyContent: 'space-around',
