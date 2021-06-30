@@ -56,7 +56,6 @@ class BadgesEdit extends React.Component {
                 <View style={styles.content}>
                     <Image style={styles.header} source={{ uri: `${badge.header_img_url}` }}></Image>
                     <Image style={styles.profileImage} source={{ uri: `${badge.profile_picture_url}` }}></Image>
-                    {/* Name */}
                     <View style={styles.form}>
                         <Text style={styles.inputText}>{badge.name}</Text>
                         <TextInput
@@ -70,7 +69,6 @@ class BadgesEdit extends React.Component {
                                 })
                             }}
                         />
-                        {/* Age */}
                         <Text style={styles.inputText}>{badge.age}</Text>
                         <TextInput
                             style={styles.form}
@@ -96,7 +94,6 @@ class BadgesEdit extends React.Component {
                                 })
                             }}
                         />
-                        {/* Followers */}
                         <Text style={styles.inputText}>Followers</Text>
                         <TextInput
                             style={styles.form}
@@ -109,7 +106,6 @@ class BadgesEdit extends React.Component {
                                 })
                             }}
                         />
-                        {/* Likes */}
                         <Text style={styles.inputText}>Likes</Text>
                         <TextInput
                             style={styles.form}
@@ -122,7 +118,6 @@ class BadgesEdit extends React.Component {
                                 })
                             }}
                         />
-                        {/* Posts */}
                         <Text style={styles.inputText}>Posts</Text>
                         <TextInput
                             style={styles.form}
