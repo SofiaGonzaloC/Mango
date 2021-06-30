@@ -7,16 +7,20 @@ import {
     FlatList,
     Alert,
     TouchableOpacityBase,
+    StatusBar,
 } from 'react-native'
-import Colors from "../../res/Colors"
+import Colors from '../../res/Colors'
 import Http from "../../libs/http"
 import BadgesItem from "./BadgesItem"
+import {TapGestureHandler} from 'react-native-gesture-handler'
+import BadgesSearch from './BadgesSearch'
 
 class BadgesScreen extends React.Component {
 
     state = {
         loading: false,
         badge: undefined,
+        badgeCopy: undefined,
     };
 
     componentDidMount() {
@@ -45,7 +49,7 @@ class BadgesScreen extends React.Component {
         this.setState({ loading: true })
         let response = await Http.instance.get_all()
         response = response.reverse()
-        this.setState({ loading: false, badges: response })
+        this.setState({ loading: false, badges: response, badgeCopy: response })
     };
 
     handlePress = item => {
@@ -56,9 +60,20 @@ class BadgesScreen extends React.Component {
         this.props.navigation.navigate('Badges', { item })
     };
 
+    handleChange = query =>{
+        const {badgesCopy} = this.state;
+
+        const badgesFiltered = badgesCopy.filter(badge => {
+            return badges.badge.name.toLowerCase().includes(query.toLowerCase())
+        });
+
+        this.setState({badges: badgesFiltered})
+    }
+
+
     handleDelete = item => {
-        Alert.alert('Are you sure?',
-            `Do you really want to delete ${item.name}'s badge?\n\nThis process can't be undone`,
+        Alert.alert(
+            'Are you sure?', `Do you really want to delete ${item.name}'s badge?\n\nThis process can't be undone`,
             [
                 {
                     text: 'Cancel',
@@ -68,7 +83,7 @@ class BadgesScreen extends React.Component {
                     text: 'Delete',
                     onPress: async () => {
                         this.setState({ loading: true, badges: undefined })
-                        await Http.instance.remove(item._id) //is this correct?
+                        await Http.instance.remove(item._id)
                         this.fetchdata()
                     },
                     style: 'destructive',
@@ -100,14 +115,14 @@ class BadgesScreen extends React.Component {
             );
         }
 
-
-
         return (
             <View style={[styles.container, styles.horizontal]}>
+                <StatusBar backgroundColor="transparent" translucent={true}/>
+                <BadgesSearch onChange={this.handleChange}/>
                 <FlatList
                     style={styles.list}
                     data={badges}
-                    renderItem={({ item }) => (//smn missing here
+                    renderItem={({ item }) => (
                         <BadgesItem
                             key={item._id}
                             item={item}
