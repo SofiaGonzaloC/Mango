@@ -1,6 +1,6 @@
 import React from "react"
 import { 
-    View, // This crashes the app
+    ViewBase, // This crashes the app
     Text, 
     StyleSheet, 
     Image 
