@@ -2,7 +2,7 @@ import React from "react"
 import { ViewBase, Text, StyleSheet, Image } from "react-native"
 import Colors from '../../res/Colors'
 
-class BadgeDetail extends React.Component{
+class BadgesDetail extends React.Component{
 
     state={
         badge: {},
