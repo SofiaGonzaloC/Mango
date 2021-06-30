@@ -1,4 +1,3 @@
-import { styles } from 'ansi-colors'
 import React from 'react'
 import {
     View,
@@ -25,13 +24,13 @@ class BadgesItem extends React.Component {
                     </View>
                 </TouchableOpacity>
                 <View style={styles.icons}>
-                    <Pressable onPress={this.props.onEdit}> {/*Edit Icon*/}
+                    <Pressable onPress={this.props.onEdit}>
                         <Image 
                             style={styles.editIcon} 
                             source={require('../../assets/edit_icon.png')} />
                     </Pressable>
 
-                    <Pressable onPress={this.props.onDelete}>{/*Delete Icon*/}
+                    <Pressable onPress={this.props.onDelete}>
                         <Image 
                             style={styles.editIcon} 
                             source={require('../../assets/delete_icon.png')} />
