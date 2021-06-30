@@ -26,10 +26,10 @@ class BadgesLanding extends React.Component {
                 <ImageBackground source={imageBackground} style={styles.image}>
                     <View style={styles.layerColor}>
                         <Text style={styles.title}>
-                            Welcome {'\n'} to my {'\n'} ...
+                            Welcome {'\n'} to {'\n'} garden
                         </Text>
                         <TouchableOpacity style={styles.button} onPress={this.handlePress}>
-                            <Text style={styles.buttonText}>Welcome</Text>
+                            <Text style={styles.buttonText}>Open</Text>
                         </TouchableOpacity>
                     </View>
                 </ImageBackground>
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     },
     title: {
         marginHorizontal: 30,
-        fontSize: 80,
+        fontSize: 70,
         fontWeight: 'bold',
         color: Colors.white,
     },
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
         padding: 15,
         marginTop: 50,
         borderRadius: 15,
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.red,
         borderColor: Colors.black,
         borderWidth: 1,
     },
