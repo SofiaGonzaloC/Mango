@@ -10,7 +10,7 @@ import {
     StatusBar,
 } from 'react-native'
 import Colors from '../../res/Colors'
-import Http from "../../libs/http"
+import Http from '../../libs/http'
 import BadgesItem from "./BadgesItem"
 import {TapGestureHandler} from 'react-native-gesture-handler'
 import BadgesSearch from './BadgesSearch'
@@ -57,7 +57,7 @@ class BadgesScreen extends React.Component {
     };
 
     handleEdit = item => {
-        this.props.navigation.navigate('Badges', { item })
+        this.props.navigation.navigate('BadgesEdit', { item })
     };
 
     handleChange = query =>{
@@ -75,7 +75,6 @@ class BadgesScreen extends React.Component {
             this.setFetchInterval()
         }
     }
-
 
     handleDelete = item => {
         Alert.alert(
@@ -135,7 +134,8 @@ class BadgesScreen extends React.Component {
                             onPress={() => this.handlePress(item)}
                             onEdit={() => this.handleEdit(item)}
                             onDelete={() => this.handleDelete(item)}
-                        />)}
+                        />
+                    )}
                     keyExtractor={(item, index) => index.toString()}
                 />
             </View>
