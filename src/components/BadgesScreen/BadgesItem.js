@@ -27,13 +27,15 @@ class BadgesItem extends React.Component {
                     <Pressable onPress={this.props.onEdit}>
                         <Image 
                             style={styles.editIcon} 
-                            source={require('../../assets/edit_icon.png')} />
+                            source={require('../../assets/edit_icon.png')}
+                        />
                     </Pressable>
 
                     <Pressable onPress={this.props.onDelete}>
                         <Image 
-                            style={styles.editIcon} 
-                            source={require('../../assets/delete_icon.png')} />
+                            style={styles.deleteIcon} 
+                            source={require('../../assets/delete_icon.png')}
+                        />
                     </Pressable>
                 </View>
             </View>
@@ -80,6 +82,7 @@ const styles = StyleSheet.create({
         width: 22,
         resizeMode: 'cover',
         justifyContent: 'center',
+        marginLeft: 30
     },
     deleteIcon: {
         marginLeft: 15,
