@@ -27,7 +27,7 @@ class BadgesEdit extends React.Component {
     getBadge = () => {
         const { item } = this.props.route.params
         this.setState({ badge: item })
-        this.props.navigation.setOption({ title: `Edit ${item.name}` })
+        this.props.navigation.setOptions({ title: `${item.name}` })
     }
 
     handleSubmit = async () =>{
@@ -46,7 +46,7 @@ class BadgesEdit extends React.Component {
                         style={styles.loader}
                         color="#234144"
                         size="large"
-                    ></ActivityIndicator>
+                    />
                 </View>
             )
         }
@@ -54,8 +54,9 @@ class BadgesEdit extends React.Component {
         return (
             <ScrollView style={styles.container}>
                 <View style={styles.content}>
-                    <Image style={styles.header} source={{ uri: `${badge.header_img_url}` }}></Image>
-                    <Image style={styles.profileImage} source={{ uri: `${badge.profile_picture_url}` }}></Image>
+                    <Image style={styles.header} source={{ uri: `${badge.header_img_url}` }}/>
+                    <Image style={styles.profileImage} source={{ uri: `${badge.profile_picture_url}` }}/>
+
                     <View style={styles.form}>
                         <Text style={styles.inputText}>{badge.name}</Text>
                         <TextInput
@@ -69,7 +70,7 @@ class BadgesEdit extends React.Component {
                                 })
                             }}
                         />
-                        <Text style={styles.inputText}>{badge.age}</Text>
+                        <Text style={styles.inputText}>Age</Text>
                         <TextInput
                             style={styles.form}
                             placeholder={`${badge.age}`}
@@ -81,7 +82,7 @@ class BadgesEdit extends React.Component {
                                 })
                             }}
                         />
-                        <Text style={styles.inputText}>{badge.ciy}</Text>
+                        <Text style={styles.inputText}>City</Text>
                         <TextInput
                             style={styles.form}
                             placeholder={`${badge.city}`}
@@ -171,7 +172,7 @@ const styles = StyleSheet.create({
         resizeMode: 'cover',
         borderRadius: 75,
         borderWidth: 3,
-        borderColor: Colors.black,
+        borderColor: Colors.red,
         position: 'absolute',
         top: 25,
         left: '28%',
@@ -181,7 +182,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 12,
         borderWidth: 1,
         borderRadius: 10,
-        borderColor: Colors.yellow,
+        borderColor: Colors.blue,
     },
     inputText:{
         fontSize: 18,
@@ -192,7 +193,7 @@ const styles = StyleSheet.create({
     submitText: {
         fontSize: 16,
         margin: 5,
-        textAlign: Colors.white,
+        textAlign: Colors.black,
         textAlign: 'center',
     }
 });
