@@ -52,11 +52,12 @@ class Http {
 
     remove = async badgeId => {
         try{
-            let request = await fetch(`${BASE_URL}/_id:${badgeId}`,{
+            let request = await fetch(`${BASE_URL}/_id:${badgeId}/`,{
                 method: 'DELETE',
             });
+            console.log(request)
             let response = await request.json()
-            return response
+            return response;
         }catch(err){
             console.log('http delete method err', err)
             throw Error(err)
