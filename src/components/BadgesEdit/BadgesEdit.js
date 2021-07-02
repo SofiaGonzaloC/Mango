@@ -94,42 +94,6 @@ class BadgesEdit extends React.Component {
                                 })
                             }}
                         />
-                        <Text style={styles.inputText}>Followers</Text>
-                        <TextInput
-                            style={styles.form}
-                            placeholder={`${badge.follower}`}
-                            onChangeText={text => {
-                                this.setState(prevState =>{
-                                    let form = Object.assign({}, prevState.form);
-                                    form.follower = text;
-                                    return {form};
-                                })
-                            }}
-                        />
-                        <Text style={styles.inputText}>Likes</Text>
-                        <TextInput
-                            style={styles.form}
-                            placeholder={`${badge.likes}`}
-                            onChangeText={text => {
-                                this.setState(prevState =>{
-                                    let form = Object.assign({}, prevState.form);
-                                    form.likes = text;
-                                    return {form};
-                                })
-                            }}
-                        />
-                        <Text style={styles.inputText}>Posts</Text>
-                        <TextInput
-                            style={styles.form}
-                            placeholder={badge.post ? `${badge.post}` : '0'}
-                            onChangeText={text => {
-                                this.setState(prevState =>{
-                                    let form = Object.assign({}, prevState.form);
-                                    form.post = text;
-                                    return {form};
-                                })
-                            }}
-                        />
                         <TouchableOpacity style={styles.submit} onPress={this.handleSubmit}>
                             <Text style={styles.submitText}>Save</Text>
                         </TouchableOpacity>
