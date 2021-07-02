@@ -78,7 +78,8 @@ class BadgesScreen extends React.Component {
 
     handleDelete = item => {
         Alert.alert(
-            'Are you sure?', `Do you really want to delete ${item.name}'s badge?\n\nThis process can't be undone`,
+            'Are you sure?',
+            `Do you really want to delete ${item.name}'s badge?\n\nThis process can't be undone`,
             [
                 {
                     text: 'Cancel',
@@ -87,8 +88,8 @@ class BadgesScreen extends React.Component {
                 {
                     text: 'Delete',
                     onPress: async () => {
-                        this.setState({ loading: true, badges: undefined })
-                        await Http.instance.remove(item._id)
+                        this.setState({ loading: true, badges: undefined });
+                        await Http.instance.remove(item._id);
                         this.fetchdata()
                     },
                     style: 'destructive',
