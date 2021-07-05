@@ -37,22 +37,32 @@ class Http {
         }
     }
     put = async (badgeId, body) => {
+        console.log(badgeId)
+        console.log(body)
         try{
-            let request = await fetch(`${BASE_URL}/_id:${badgeId}/`, {
+            let request = await fetch(`${BASE_URL}/_id:${badgeId}`, {
                 method: 'PUT',
+                headers: {
+
+                    'Content-Type': 'application/json',
+          
+                    Accept: 'application/json',
+          
+                  },
                 body: JSON.stringify(body),
             });
+            console.log(request)
             let response = await request.json()
             return response
         }catch(err){
-            console.log('http  method err', err)
+            console.log('http put method err', err)
             throw Error(err)
         }
     }
 
     remove = async badgeId => {
         try{
-            let request = await fetch(`${BASE_URL}/_id:${badgeId}/`,{
+            let request = await fetch(`${BASE_URL}/_id:${badgeId}`,{
                 method: 'DELETE',
             });
             console.log(request)
