@@ -22,6 +22,10 @@ class Login extends React.Component {
     this.props.navigation.replace('Badges')
   };
 
+  signUp = () => {
+    this.props.navigation.replace('BadgesSignup')
+  };
+
   render() {
     return (
       <ScrollView>
@@ -35,13 +39,14 @@ class Login extends React.Component {
                 <View style={styles.inputContainer}>
                   <TextInput
                     style={styles.form}
-                    placeholder="Student ID"
+                    placeholder="Email"
                     placeholderTextColor={Colors.black}
-                  />
+                    />
                   <TextInput
                     secureTextEntry={true}
                     style={styles.form}
                     placeholder="Password"
+                    placeholderTextColor={Colors.black}
                   />
                 </View>
 
@@ -59,6 +64,7 @@ class Login extends React.Component {
           <View style={styles.signup}>
             <TouchableOpacity
               style={styles.buttonLight}
+              onPress={this.signUp}
             >
               <Text style={styles.buttonLightText}>SIGN UP</Text>
             </TouchableOpacity>
