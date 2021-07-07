@@ -3,6 +3,7 @@ import {Image} from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import BadgesStack from './BadgesStack'
 import Colors from '../../res/Colors'
+import BadgesInformation from '../BadgesInformation/BadgesInformation'
 
 const Tabs = createBottomTabNavigator()
 
@@ -25,6 +26,18 @@ const BadgesTabNavigator = () => {
                         <Image 
                             style={{tintColor: color, width: size, height:size}}
                             source={require("../../assets/home.png")}
+                        />
+                    ),
+                }}
+            />
+            <Tabs.Screen
+                name="Information"
+                component={BadgesInformation}
+                options={{
+                    tabBarIcon: ({size, color}) => (
+                        <Image 
+                            style={{tintColor: color, width: size, height:size}}
+                            source={require("../../assets/information.png")}
                         />
                     ),
                 }}
