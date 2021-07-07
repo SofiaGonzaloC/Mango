@@ -23,10 +23,7 @@ const BadgesStack = () =>{
                 },
                 headerTintColor: Colors.white,
             }}>
-            <Stack.Screen 
-                name="Landing" 
-                component={BadgesLanding} 
-            />
+
             <Stack.Screen name="Badges" component={BadgesScreen} />
             <Stack.Screen name="BadgesDetail" component={BadgesDetail} />
             <Stack.Screen name="BadgesEdit" component={BadgesEdit} />
