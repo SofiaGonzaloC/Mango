@@ -6,6 +6,7 @@ import Colors from "../../res/Colors"
 import BadgesLanding from "../BadgesLanding/BadgesLanding"
 import BadgesLogin from "../BadgesLogin/BadgesLogin"
 import BadgesSignup from "../BadgesSignup/BadgesSignUp"
+import BadgesScreen from '../BadgesScreen/BadgesScreen'
 
 const Stack = createStackNavigator()
 
@@ -22,14 +23,15 @@ const AppStack = () => {
             }}
         >
             <Stack.Screen 
-                name='Landing' 
+                name="Landing"
                 component={BadgesLanding}
                 options={{ headerShown: false }}
             >
-                <Stack.Screen name="BadgesTabNavigator" component={BadgesTabNavigator}/>
-                <Stack.Screen name="BadgesLogin" component={BadgesLogin}/>
-                <Stack.Screen name="BadgesSignUp" component={BadgesSignup}/>
             </Stack.Screen>
+            <Stack.Screen name="BadgesTabNavigator" component={BadgesTabNavigator}/>
+            <Stack.Screen name="BadgesLogin" component={BadgesLogin}/>
+            <Stack.Screen name="Badges" component={BadgesScreen}/>
+            <Stack.Screen name="BadgesSignup" component={BadgesSignup}/>
         </Stack.Navigator>
     );
 }
