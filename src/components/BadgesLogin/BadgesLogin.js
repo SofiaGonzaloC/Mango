@@ -41,7 +41,7 @@ class Login extends React.Component {
                     style={styles.form}
                     placeholder="Email"
                     placeholderTextColor={Colors.black}
-                    />
+                  />
                   <TextInput
                     secureTextEntry={true}
                     style={styles.form}
