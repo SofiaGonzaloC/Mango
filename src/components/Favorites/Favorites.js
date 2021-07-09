@@ -29,15 +29,13 @@ class Favorites extends React.Component {
         })
     }
 
-
-
-    getFavorites = async() => {
+    getFavorites = async () => {
         try {
             const allKeys = await Storage.instance.getAllKeys()
             const key = allKeys.filter(key => key.includes('favorite-'))
             const favs = await Storage.instance.multiGet(keys)
-            const favorites = favs.map( fav => JSON.parse(fav[1]))
-            this.setState({badges: favorites})
+            const favorites = favs.map(fav => JSON.parse(fav[1]))
+            this.setState({ badges: favorites })
         } catch (err) {
             console.log('get favorite err', err)
         }
@@ -52,7 +50,11 @@ class Favorites extends React.Component {
         const { badges, loading } = this.state
 
         if (loading == true && !badges) {
-            <View style={[exampleStyles.container, exampleStyles.horizontal]}>
+            <View style={[
+                styles.favoritesContainer,
+                exampleStyles.container,
+                exampleStyles.horizontal
+            ]}>
                 <StatusBar backgroundColor="transparent" translucent={true} />
                 <ActivityIndicator
                     style={exampleStyles.loader}
@@ -78,6 +80,9 @@ class Favorites extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    favoritesContainer: {
+        paddingTop: 45,
+    },
     list: {
         width: '100%',
         paddingHorizontal: 10,
