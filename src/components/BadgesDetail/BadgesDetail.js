@@ -22,8 +22,22 @@ class BadgesDetail extends React.Component {
 
     getBadge = () => {
         const { item } = this.props.route.params
-        this.setState({ badge: item })
+        this.setState({ badge: item }), () => {
+            this.getFavorite()
+        }
         this.props.navigation.setOptions({ title: item.name })
+    }
+
+    getFavorite = async () => {
+        try {
+            const key = `favorite-${this.state.badge._id}`
+            const favoriteStr = await Storage.instance.get(key)
+            if (favoriteStr != null) {
+                this.setState({ isFavorite: null })
+            }
+        } catch (err) {
+            console.log('Get favorite err', err)
+        }
     }
 
     toggleFavorite = () => {
@@ -72,11 +86,11 @@ class BadgesDetail extends React.Component {
                     style={styles.favorite}
                     onPress={this.toggleFavorite}
                 >
-                    <Image  source={
-                            isFavorite
-                                ? require('../../assets/isFavorite.png') //if true
-                                : require('../../assets/notFavorite.png') //else
-                            } 
+                    <Image source={
+                        isFavorite
+                            ? require('../../assets/isFavorite.png') //if true
+                            : require('../../assets/notFavorite.png') //else
+                    }
                     />
 
                 </TouchableOpacity>
