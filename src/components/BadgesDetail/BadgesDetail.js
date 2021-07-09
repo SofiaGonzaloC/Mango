@@ -1,44 +1,58 @@
 import React from "react"
-import { 
+import {
     View,
-    Text, 
-    StyleSheet, 
-    Image 
+    Text,
+    StyleSheet,
+    Image,
+    TouchableOpacity,
 } from "react-native"
 import Colors from '../../res/Colors'
 
-class BadgesDetail extends React.Component{
+class BadgesDetail extends React.Component {
 
-    state={
+    state = {
         badge: {},
+        isFavorite: true,
     }
 
-    componentDidMount (){
+    componentDidMount() {
         this.getBadge()
     }
 
     getBadge = () => {
-        const {item} = this.props.route.params
-        this.setState({badge:item})
-        this.props.navigation.setOptions({title: item.name})
+        const { item } = this.props.route.params
+        this.setState({ badge: item })
+        this.props.navigation.setOptions({ title: item.name })
     }
 
-    render(){
+    render() {
 
-        const {badge} = this.state
+        const { badge, isFavorite } = this.state
 
-        return(
+        return (
             <View style={styles.container}>
                 <View style={styles.badge}>
-                    <Image 
-                        style={styles.header} 
-                        source={{uri: `${badge.header_img_url}`}}
+                    <Image
+                        style={styles.header}
+                        source={{ uri: `${badge.header_img_url}` }}
                     />
-                    <Image 
-                        style={styles.profileImage} 
-                        source={{uri: `${badge.profile_picture_url}`}}
+                    <Image
+                        style={styles.profileImage}
+                        source={{ uri: `${badge.profile_picture_url}` }}
                     />
                 </View>
+
+                <TouchableOpacity
+                    style={styles.favorite}
+                    onPress={this.toggleFavorite}
+                >
+                    <Image source={
+                        isFavorite
+                            ? require('../../assets/isFavorite.png') //if true
+                            : require('../../assets/notFavorite.png') //else
+                    } />
+                </TouchableOpacity>
+
                 <View style={styles.userInfo}>
                     <Text style={styles.name}>{badge.name}</Text>
                     <Text style={styles.age}>{badge.age}</Text>
@@ -83,7 +97,7 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 25,
         borderTopRightRadius: 25,
     },
-    profileImage:{
+    profileImage: {
         width: 200,
         height: 200,
         resizeMode: 'cover',
@@ -108,7 +122,7 @@ const styles = StyleSheet.create({
     age: {
         fontSize: 28,
         margin: 20,
-        color: Colors.white,   
+        color: Colors.white,
     },
     city: {
         marginTop: 10,
@@ -129,14 +143,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-    dataInfo:{
-        marginTop: 20, 
+    dataInfo: {
+        marginTop: 20,
         fontSize: 28,
         fontWeight: 'bold',
         marginHorizontal: 25,
         color: Colors.white
     },
-    smallText:{
+    smallText: {
         color: Colors.yellow
     }
 })
