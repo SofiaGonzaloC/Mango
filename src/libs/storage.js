@@ -7,7 +7,7 @@ class Storage {
         try{
             await AsyncStorage.setItem(key, value)
             return true
-        }catch(error){
+        }catch(err){
             console.log('Storage store err', err)
             return false
         }
