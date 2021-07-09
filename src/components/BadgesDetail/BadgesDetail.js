@@ -13,7 +13,7 @@ class BadgesDetail extends React.Component {
 
     state = {
         badge: {},
-        isFavorite: true,
+        isFavorite: false,
     }
 
     componentDidMount() {
@@ -52,7 +52,6 @@ class BadgesDetail extends React.Component {
     }
 
     render() {
-
         const { badge, isFavorite } = this.state
 
         return (
@@ -73,11 +72,13 @@ class BadgesDetail extends React.Component {
                     style={styles.favorite}
                     onPress={this.toggleFavorite}
                 >
-                    <Image source={
-                        isFavorite
-                            ? require('../../assets/notFavorite.png') //if true
-                            : require('../../assets/isFavorite.png') //else
-                    } />
+                    <Image  source={
+                            isFavorite
+                                ? require('../../assets/isFavorite.png') //if true
+                                : require('../../assets/notFavorite.png') //else
+                            } 
+                    />
+
                 </TouchableOpacity>
 
                 <View style={styles.userInfo}>
@@ -138,8 +139,8 @@ const styles = StyleSheet.create({
     },
     favorite: {
         position: 'absolute',
-        top: 290,
-        right: 40,
+        top: 150,
+        right: 20,
     },
     userInfo: {
         flexDirection: 'row',
