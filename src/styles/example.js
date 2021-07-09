@@ -5,7 +5,7 @@ const exampleStyles = StyleSheet.create({
     container:{
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: Colors.black
+        backgroundColor: Colors.black,
     },
     loader: {
         height: '100%',
@@ -13,7 +13,8 @@ const exampleStyles = StyleSheet.create({
     },
     horizontal: {
         justifyContent: 'space-around',
-        alignItems: 'center'
+        alignItems: 'center',
+        paddingTop: 20
     },
 })
 
