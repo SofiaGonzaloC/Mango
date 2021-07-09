@@ -32,7 +32,7 @@ class Favorites extends React.Component {
     getFavorites = async () => {
         try {
             const allKeys = await Storage.instance.getAllKeys()
-            const key = allKeys.filter(key => key.includes('favorite-'))
+            const keys = allKeys.filter(key => key.includes('favorite-'))
             const favs = await Storage.instance.multiGet(keys)
             const favorites = favs.map(fav => JSON.parse(fav[1]))
             this.setState({ badges: favorites })
@@ -41,7 +41,7 @@ class Favorites extends React.Component {
         }
     }
 
-    componentWillUnMount = () => {
+    componentWillUnmount = () => {
         this.focusListener()
     }
 
@@ -81,7 +81,7 @@ class Favorites extends React.Component {
 
 const styles = StyleSheet.create({
     favoritesContainer: {
-        paddingTop: 45,
+        paddingTop: 100,
     },
     list: {
         width: '100%',
