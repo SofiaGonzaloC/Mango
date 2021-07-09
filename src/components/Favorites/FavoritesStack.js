@@ -7,7 +7,16 @@ const Stack = createStackNavigator();
 
 const FavoritesStack = () =>{
     return(
-        <Stack.Navigator>
+        <Stack.Navigator
+            screenOptions={{
+                headerShown: false,
+                headerStyle:{
+                    backgroundColor: Colors.black,
+                    shadowColor: Colors.black,
+                },
+                headerTintColor: Colors.white,
+            }}
+        >
             <Stack.Screen name="Favorites" component={Favorites} />
         </Stack.Navigator>
     )
