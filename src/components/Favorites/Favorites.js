@@ -41,6 +41,10 @@ class Favorites extends React.Component {
         }
     }
 
+    handlePress = item => {
+        this.props.navigation.navigate('FavoritesDetails', {item})
+    }
+
     componentWillUnmount = () => {
         this.focusListener()
     }
@@ -64,7 +68,7 @@ class Favorites extends React.Component {
             </View>
         }
         return (
-            <View style={[exampleStyles.container, exampleStyles.horizontal]}>
+            <View style={[ exampleStyles.container, exampleStyles.horizontal]}>
                 <StatusBar backgroundColor="transparent" translucent={true} />
                 <FlatList
                     style={styles.list}
