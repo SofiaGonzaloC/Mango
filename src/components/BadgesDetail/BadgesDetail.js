@@ -7,6 +7,7 @@ import {
     TouchableOpacity,
 } from "react-native"
 import Colors from '../../res/Colors'
+import Storage from "../../libs/storage"
 
 class BadgesDetail extends React.Component {
 
@@ -25,6 +26,31 @@ class BadgesDetail extends React.Component {
         this.props.navigation.setOptions({ title: item.name })
     }
 
+    toggleFavorite = () => {
+        if (this.state.isFavorite) {
+            this.removeFavorite()
+        } else {
+            this.addFavorite()
+        }
+    }
+
+    addFavorite = async () => {
+        const badge = JSON.stringify(this.state.badge)
+        const key = `favorite-${this.state.badge._id}`
+
+        const stored = await Storage.instance.store(key, badge)
+
+        if (stored) {
+            this.setState({ isFavorite: true })
+        }
+    }
+
+    removeFavorite = async () => {
+        const key = `favorite-${this.state.badge._id}`
+        await Storage.instance.remove(key)
+        this.setState({ isFavorite: false })
+    }
+
     render() {
 
         const { badge, isFavorite } = this.state
@@ -40,16 +66,17 @@ class BadgesDetail extends React.Component {
                         style={styles.profileImage}
                         source={{ uri: `${badge.profile_picture_url}` }}
                     />
-                </View>
 
+                </View>
+                {/* The below component displays a warning */}
                 <TouchableOpacity
                     style={styles.favorite}
                     onPress={this.toggleFavorite}
                 >
                     <Image source={
                         isFavorite
-                            ? require('../../assets/isFavorite.png') //if true
-                            : require('../../assets/notFavorite.png') //else
+                            ? require('../../assets/notFavorite.png') //if true
+                            : require('../../assets/isFavorite.png') //else
                     } />
                 </TouchableOpacity>
 
@@ -86,8 +113,9 @@ const styles = StyleSheet.create({
     badge: {
         flex: 1,
         margin: 20,
+        marginTop: 30,
         width: '90%',
-        height: '90%',
+        height: '100%',
         backgroundColor: Colors.white,
         borderRadius: 25,
     },
@@ -107,6 +135,11 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: '23%',
         left: '21%',
+    },
+    favorite: {
+        position: 'absolute',
+        top: 290,
+        right: 40,
     },
     userInfo: {
         flexDirection: 'row',
