@@ -6,7 +6,6 @@ import {
     StyleSheet,
     FlatList,
     Alert,
-    TouchableOpacityBase,
     StatusBar,
 } from 'react-native'
 import Colors from '../../res/Colors'
@@ -114,7 +113,7 @@ class BadgesScreen extends React.Component {
         const { badges, loading } = this.state;
 
         if (loading === true && !badges) {
-            return <Loader /> // Is this correct ?
+            return <Loader />
         }
 
         return (
