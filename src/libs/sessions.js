@@ -7,7 +7,7 @@ class UserSession {
 
     login = async body => {
         try {
-            let request = await fetch('${USERS_URL}/users/signup/' {
+            let request = await fetch('${USERS_URL}/users/signup/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
