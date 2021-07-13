@@ -4,7 +4,6 @@ import {
   Text,
   View,
   StatusBar,
-  StyleSheet,
   ImageBackground,
   TouchableOpacity,
   TextInput,
@@ -19,7 +18,13 @@ const Background = {
 
 class Login extends React.Component {
 
-
+  state = {
+    loading: false,
+    error: null,
+    user: undefined,
+    isPasswordVisible: true,
+    form: {},
+  }
 
   handlePress = () => {
     this.props.navigation.replace('BadgesTabNavigator')
@@ -30,6 +35,7 @@ class Login extends React.Component {
   };
 
   render() {
+    const {isPasswordVisible, loading, error} = this.state
     return (
       <ScrollView>
         <View style={styles.container}>
@@ -46,11 +52,26 @@ class Login extends React.Component {
                     placeholderTextColor={Colors.black}
                   />
                   <TextInput
-                    secureTextEntry={true}
                     style={styles.form}
-                    placeholder="Password"
+                    secureTextEntry={true}
+                    placeholder={"Password"}
                     placeholderTextColor={Colors.black}
+                    onChangeText={text => {
+                      let form = Object.assign ({}, prevstate.form)
+                      form.password = text
+                      return {form}
+                    }}
                   />
+                  {/* <TouchableOpacity>
+                    <image
+                      style={{marginRight: 10}}
+                      source={
+                        isPasswordVisible
+                        ? require("../../assets/show.png")
+                        : require("../../assets/hide.png")
+                      }
+                    />
+                  </TouchableOpacity> */}
                 </View>
 
                 <TouchableOpacity
