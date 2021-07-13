@@ -12,8 +12,10 @@ import {
 import Colors from '../../res/Colors'
 import Http from '../../libs/http'
 import BadgesItem from "./BadgesItem"
-import {TapGestureHandler} from 'react-native-gesture-handler'
+import { TapGestureHandler } from 'react-native-gesture-handler'
 import BadgesSearch from './BadgesSearch'
+import Loader from "../Generic/Loader"
+import Storage from "../../libs/storage"
 
 class BadgesScreen extends React.Component {
 
@@ -34,14 +36,14 @@ class BadgesScreen extends React.Component {
             this.setFetchInterval();
         });
     }
-    
+
     blurEvent = () => {
         this.blurListener = this.props.navigation.addListener('blur', () => {
             clearInterval(this.interval)
         });
     }
 
-    setFetchInterval = () => { 
+    setFetchInterval = () => {
         this.interval = setInterval(this.fetchdata, 3000)
     };
 
@@ -60,16 +62,16 @@ class BadgesScreen extends React.Component {
         this.props.navigation.navigate('BadgesEdit', { item })
     };
 
-    handleChange = query =>{
-        const {badgesCopy} = this.state;
+    handleChange = query => {
+        const { badgesCopy } = this.state;
 
-        const badgesFiltered = badgesCopy.filter( badge => {
+        const badgesFiltered = badgesCopy.filter(badge => {
             return badge.name.toLowerCase().includes(query.toLowerCase())
         });
 
-        this.setState({badges: badgesFiltered})
+        this.setState({ badges: badgesFiltered })
 
-        if(query){
+        if (query) {
             clearInterval(this.interval)
         } else {
             this.setFetchInterval()
@@ -90,6 +92,8 @@ class BadgesScreen extends React.Component {
                     onPress: async () => {
                         this.setState({ loading: true, badges: undefined });
                         await Http.instance.remove(item._id);
+                        let key = `favorite-${item._id}`
+                        await Storage.instance.remove(key)
                         this.fetchdata()
                     },
                     style: 'destructive',
@@ -101,7 +105,7 @@ class BadgesScreen extends React.Component {
         );
     };
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         this.focusListener();
         this.blurEvent()
     }
@@ -109,22 +113,14 @@ class BadgesScreen extends React.Component {
     render() {
         const { badges, loading } = this.state;
 
-        if(loading===true && !badges){
-            return(
-            <View style={[styles.container, styles.horizontal]}>
-                <ActivityIndicator
-                    style={styles.loader}
-                    color="#000000"
-                    size="large"
-                />
-            </View>
-            );
+        if (loading === true && !badges) {
+            return <Loader /> // Is this correct ?
         }
 
         return (
             <View style={[styles.container, styles.horizontal]}>
-                <StatusBar backgroundColor="transparent" translucent={true}/>
-                <BadgesSearch onChange={this.handleChange}/>
+                <StatusBar backgroundColor="transparent" translucent={true} />
+                <BadgesSearch onChange={this.handleChange} />
                 <FlatList
                     style={styles.list}
                     data={badges}
