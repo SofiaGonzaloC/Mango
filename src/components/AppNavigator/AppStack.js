@@ -4,8 +4,8 @@ import BadgesTabNavigator from "../BadgesScreen/BadgesTabNavigator"
 import Colors from "../../res/Colors"
 
 import BadgesLanding from "../BadgesLanding/BadgesLanding"
-import BadgesLogin from "../BadgesLogin/BadgesLogin"
-import BadgesSignup from "../BadgesSignup/BadgesSignUp"
+import BadgesLogin from "../UsersScreen/BadgesLogin"
+import BadgesSignup from "../UsersScreen/BadgesSignUp"
 import BadgesScreen from '../BadgesScreen/BadgesScreen'
 import BadgesInformation from '../BadgesInformation/BadgesInformation'
 
