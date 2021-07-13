@@ -24,19 +24,25 @@ class BadgesItem extends React.Component {
                     </View>
                 </TouchableOpacity>
                 <View style={styles.icons}>
-                    <Pressable onPress={this.props.onEdit}>
-                        <Image 
-                            style={styles.editIcon} 
-                            source={require('../../assets/edit_icon.png')}
-                        />
-                    </Pressable>
 
-                    <Pressable onPress={this.props.onDelete}>
-                        <Image 
-                            style={styles.deleteIcon} 
-                            source={require('../../assets/delete_icon.png')}
-                        />
-                    </Pressable>
+                    {this.props.onEdit ? (
+                        <Pressable onPress={this.props.onEdit}>
+                            <Image
+                                style={styles.editIcon}
+                                source={require('../../assets/edit_icon.png')}
+                            />
+                        </Pressable>
+                    ) : null }
+
+                    {this.props.onDelete ?(
+                        <Pressable onPress={this.props.onDelete}>
+                            <Image
+                                style={styles.deleteIcon}
+                                source={require('../../assets/delete_icon.png')}
+                            />
+                        </Pressable>
+                    ) : null}
+                    
                 </View>
             </View>
         )
