@@ -6,8 +6,8 @@ import BadgesLanding from '../BadgesLanding/BadgesLanding'
 import BadgesDetail from '../BadgesDetail/BadgesDetail'
 import BadgesScreen from '../BadgesScreen/BadgesScreen'
 import BadgesEdit from '../BadgesEdit/BadgesEdit'
-import BadgesLogin from '../BadgesLogin/BadgesLogin'
-import BadgesSignup from "../BadgesSignup/BadgesSignUp"
+import BadgesLogin from '../UsersScreen/BadgesLogin'
+import BadgesSignup from "../UsersScreen/BadgesSignUp"
 import Colors from "../../res/Colors"
 
 const Stack = createStackNavigator()
