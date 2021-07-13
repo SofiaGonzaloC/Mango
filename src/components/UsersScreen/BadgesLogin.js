@@ -11,6 +11,7 @@ import {
   ScrollView,
 } from 'react-native';
 import styles from './styles';
+import UserSession from '../../libs/sessions';
 
 const Background = {
   uri: `https://images.unsplash.com/photo-1501746877-14782df58970?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8bWFuZ298ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60`,
@@ -26,6 +27,12 @@ class Login extends React.Component {
     form: {},
   }
 
+  handleSubmit = async () => {
+    this.setState({ loading: true, error: null, user: undefined })
+    let user = await UserSession.instance.login(this.state.form);
+    console.log()
+  }
+
   handlePress = () => {
     this.props.navigation.replace('BadgesTabNavigator')
   };
@@ -34,8 +41,16 @@ class Login extends React.Component {
     this.props.navigation.replace('BadgesSignup')
   };
 
+  toggleIsPassword = () => {
+    if (this.state.isPasswordVisible) {
+      this.setState({ isPasswordVisible: false })
+    } else {
+      this.setState({ isPasswordVisible: true })
+    }
+  }
+
   render() {
-    const {isPasswordVisible, loading, error} = this.state
+    const { isPasswordVisible, loading, error } = this.state
     return (
       <ScrollView>
         <View style={styles.container}>
@@ -48,8 +63,15 @@ class Login extends React.Component {
                 <View style={styles.inputContainer}>
                   <TextInput
                     style={styles.form}
-                    placeholder="Email"
+                    placeholder="Username"
                     placeholderTextColor={Colors.black}
+                    onChangeText={text => {
+                      this.setState(prevState => {
+                        let form = Object.assign({}, prevState.form)
+                        form.username = text
+                        return {form}
+                      })
+                    }}
                   />
                   <TextInput
                     style={styles.form}
@@ -57,12 +79,14 @@ class Login extends React.Component {
                     placeholder={"Password"}
                     placeholderTextColor={Colors.black}
                     onChangeText={text => {
-                      let form = Object.assign ({}, prevstate.form)
-                      form.password = text
-                      return {form}
+                      this.setState(prevState => {
+                        let form = Object.assign({}, prevState.form)
+                        form.password = text
+                        return {form}
+                      })
                     }}
                   />
-                  {/* <TouchableOpacity>
+                  {/* <TouchableOpacity onPress={this.toggleIsPasswordVisible}>
                     <image
                       style={{marginRight: 10}}
                       source={
@@ -76,7 +100,7 @@ class Login extends React.Component {
 
                 <TouchableOpacity
                   style={styles.buttonDark}
-                  onPress={this.handlePress}>
+                  onPress={this.handleSubmit}>
                   <Text style={styles.buttonDarkText}>LOGIN</Text>
                 </TouchableOpacity>
               </View>
