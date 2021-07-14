@@ -7,7 +7,7 @@ class UserSession {
 
     login = async body => {
         try {
-            let request = await fetch('${USERS_URL}/users/signup/', {
+            let request = await fetch(`${USERS_URL}/users/signup/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -16,9 +16,10 @@ class UserSession {
                 body: JSON.stringify(body),
             })
             let response = request.json()
-            let key = `token-${response.user.username}`
-            await Storage.instance.store(key, response.token)
-            return response.user.username
+            console.log(request)
+            // let key = `token-${response.user.username}`
+            // await Storage.instance.store(key, response.token)
+            // return response.user.username
         } catch (err) {
             console.log('Login error', err)
             throw Error(err)
