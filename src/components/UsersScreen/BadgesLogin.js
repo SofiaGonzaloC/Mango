@@ -28,16 +28,26 @@ class Login extends React.Component {
   }
 
   handleSubmit = async () => {
-    this.setState({ loading: true, error: null, user: undefined })
-    let user = await UserSession.instance.login(this.state.form);
-    console.log()
+    try {
+      this.setState({ loading: true, error: null, user: undefined })
+      let response = await UserSession.instance.login(this.state.form);
+
+      if (typeof response === 'object') {
+        console.log(response)
+        this.setState({ loading: false, error: response, user: undefined })
+      } else {
+        this.setState({ loading: false, error: null, user: response })
+      }
+    } catch (err) {
+      this.setState({ loading: false, error: err })
+    }
+    if (this.state.user) { /* If user exists move to v screen */
+      this.props.navigation.replace('BadgesTabNavigator')
+    }
+
   }
 
   handlePress = () => {
-    this.props.navigation.replace('BadgesTabNavigator')
-  };
-
-  signUp = () => {
     this.props.navigation.replace('BadgesSignup')
   };
 
@@ -59,17 +69,25 @@ class Login extends React.Component {
             <View style={styles.layerColor}>
               <Text style={styles.title}>Login</Text>
 
+
               <View style={styles.login}>
+              {error ? (
+                <View style={styles.errorContainer}>
+                  <Text style={styles.errorMsg}>
+                    {'Invalid Username or password. PLease try again'}
+                  </Text>
+                </View>
+              ) : null}
                 <View style={styles.inputContainer}>
                   <TextInput
                     style={styles.form}
-                    placeholder="Username"
+                    placeholder={"Username"}
                     placeholderTextColor={Colors.black}
                     onChangeText={text => {
                       this.setState(prevState => {
                         let form = Object.assign({}, prevState.form)
                         form.username = text
-                        return {form}
+                        return { form }
                       })
                     }}
                   />
@@ -82,7 +100,7 @@ class Login extends React.Component {
                       this.setState(prevState => {
                         let form = Object.assign({}, prevState.form)
                         form.password = text
-                        return {form}
+                        return { form }
                       })
                     }}
                   />
@@ -107,16 +125,16 @@ class Login extends React.Component {
 
             </View>
 
+            <View style={styles.signup}>
+              <TouchableOpacity
+                style={styles.buttonLight}
+                onPress={this.handlePress}
+              >
+                <Text style={styles.buttonLightText}>SIGN UP</Text>
+              </TouchableOpacity>
+            </View>
           </ImageBackground>
 
-          <View style={styles.signup}>
-            <TouchableOpacity
-              style={styles.buttonLight}
-              onPress={this.signUp}
-            >
-              <Text style={styles.buttonLightText}>SIGN UP</Text>
-            </TouchableOpacity>
-          </View>
         </View>
       </ScrollView>
     );
