@@ -9,16 +9,18 @@ const styles = StyleSheet.create({
 
         justifyContent: 'center',
 
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.yellow,
+
+        height: '100%'
 
     },
 
     image: {
         flex: 1,
-        marginTop: -150,
+        marginTop: -130,
         paddingTop: 205,
         paddingBottom: 130,
-        marginBottom: -75,
+        // marginBottom: -75,
     },
 
     logoContainer: {
@@ -54,7 +56,7 @@ const styles = StyleSheet.create({
     },
 
     layerColor: {
-        flex: 2,
+        // flex: 2,
 
         justifyContent: 'center',
 
@@ -71,7 +73,21 @@ const styles = StyleSheet.create({
 
         fontSize: 20,
 
-        color: Colors.yellow,
+        color: Colors.black,
+    },
+
+    errorContainer:{
+        backgroundColor: Colors.red,
+        padding: 15,
+        position: 'absolute',
+        marginBottom: 100,
+        marginTop: -40,
+        zIndex: 10,
+        borderRadius: 5
+    },
+
+    errorMsg:{
+        color: Colors.white
     },
 
     login: {
@@ -136,7 +152,8 @@ const styles = StyleSheet.create({
 
         alignItems: 'center',
 
-        marginTop: 10,
+        marginTop: 50,
+
         marginBottom: 50,
 
     },
