@@ -1,5 +1,5 @@
-const BASE_URL = 'https://api-badges-sgc.herokuapp.com';
-const USERS_URL = 'https://django-api-asgc.herokuapp.com'
+const BASE_URL = 'https://api-badges-sgc.herokuapp.com'; // Badge management
+const USERS_URL = 'https://django-api-asgc.herokuapp.com'; // User management
 import Storage from "./storage"
 
 class UserSession {
@@ -7,19 +7,23 @@ class UserSession {
 
     login = async body => {
         try {
-            let request = await fetch(`${USERS_URL}/users/signup/`, {
+            let request = await fetch(`${USERS_URL}/users/login/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    Accept: 'application/json'
                 },
                 body: JSON.stringify(body),
             })
-            let response = request.json()
-            console.log(request)
-            // let key = `token-${response.user.username}`
-            // await Storage.instance.store(key, response.token)
-            // return response.user.username
+            let response = await request.json()
+
+            try {
+                let key = `token-${response.user.username}`
+                await Storage.instance.store(key, response.token)
+                return response.user.username
+            } catch (err) {
+                return response
+            }
+
         } catch (err) {
             console.log('Login error', err)
             throw Error(err)
