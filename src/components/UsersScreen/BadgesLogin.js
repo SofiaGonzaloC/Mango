@@ -44,7 +44,6 @@ class Login extends React.Component {
     if (this.state.user) { /* If user exists move to v screen */
       this.props.navigation.replace('BadgesTabNavigator')
     }
-
   }
 
   handlePress = () => {
@@ -71,14 +70,19 @@ class Login extends React.Component {
 
 
               <View style={styles.login}>
-              {error ? (
-                <View style={styles.errorContainer}>
-                  <Text style={styles.errorMsg}>
-                    {'Invalid Username or password. PLease try again'}
-                  </Text>
-                </View>
-              ) : null}
+
+                {/* IF login is incorrect : */}
+                {error ? (
+                  <View style={styles.errorContainer}>
+                    <Text style={styles.errorMsg}>
+                      {'Invalid Username or password. PLease try again'}
+                    </Text>
+                  </View>
+                ) : null}
+
+                {/* user input */}
                 <View style={styles.inputContainer}>
+
                   <TextInput
                     style={styles.form}
                     placeholder={"Username"}
@@ -91,6 +95,8 @@ class Login extends React.Component {
                       })
                     }}
                   />
+
+                  {/* Password input */}
                   <TextInput
                     style={styles.form}
                     secureTextEntry={true}
@@ -104,6 +110,7 @@ class Login extends React.Component {
                       })
                     }}
                   />
+                  
                   {/* <TouchableOpacity onPress={this.toggleIsPasswordVisible}>
                     <image
                       style={{marginRight: 10}}

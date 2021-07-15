@@ -46,6 +46,7 @@ class BadgesScreen extends React.Component {
         this.interval = setInterval(this.fetchdata, 3000)
     };
 
+    // Gets information to display badges
     fetchdata = async () => {
         this.setState({ loading: true })
         let response = await Http.instance.get_all()
@@ -53,14 +54,17 @@ class BadgesScreen extends React.Component {
         this.setState({ loading: false, badges: response, badgesCopy: response })
     };
 
+    // If pressed, directs to a screen with the information of the badge
     handlePress = item => {
         this.props.navigation.navigate('BadgesDetail', { item })
     };
 
+    // If pressed, directs to a screen to edit the information of a badge
     handleEdit = item => {
         this.props.navigation.navigate('BadgesEdit', { item })
     };
 
+    // Updates in case any information of the badge changes
     handleChange = query => {
         const { badgesCopy } = this.state;
 
@@ -77,6 +81,7 @@ class BadgesScreen extends React.Component {
         }
     }
 
+    // Displays an alert to the user to make sure if they really want to delete the selected badge
     handleDelete = item => {
         Alert.alert(
             'Are you sure?',
@@ -91,7 +96,7 @@ class BadgesScreen extends React.Component {
                     onPress: async () => {
                         this.setState({ loading: true, badges: undefined });
                         await Http.instance.remove(item._id);
-                        let key = `favorite-${item._id}`
+                        let key = `favorite-${item._id}` // Erases badge from favorites
                         await Storage.instance.remove(key)
                         this.fetchdata()
                     },
@@ -112,6 +117,7 @@ class BadgesScreen extends React.Component {
     render() {
         const { badges, loading } = this.state;
 
+        // Shows a loading screen if badges are not ready to show
         if (loading === true && !badges) {
             return <Loader />
         }

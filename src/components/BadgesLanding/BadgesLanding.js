@@ -15,6 +15,7 @@ const imageBackground = {
 
 class BadgesLanding extends React.Component {
 
+    // Moves to screen "badgeslogin"
     handlePress = () => {
         this.props.navigation.replace('BadgesLogin')
     };

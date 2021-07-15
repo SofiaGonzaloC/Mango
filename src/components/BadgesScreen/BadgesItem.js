@@ -25,6 +25,7 @@ class BadgesItem extends React.Component {
                 </TouchableOpacity>
                 <View style={styles.icons}>
 
+                    {/* Displays Icon for edit option. If pressed it will move to badgesedit screen */}
                     {this.props.onEdit ? (
                         <Pressable onPress={this.props.onEdit}>
                             <Image
@@ -34,6 +35,7 @@ class BadgesItem extends React.Component {
                         </Pressable>
                     ) : null }
 
+                    {/* Displays icon for delete option */}
                     {this.props.onDelete ?(
                         <Pressable onPress={this.props.onDelete}>
                             <Image

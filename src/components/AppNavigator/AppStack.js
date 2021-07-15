@@ -13,7 +13,8 @@ const Stack = createStackNavigator()
 
 const AppStack = () => {
     return (
-        <Stack.Navigator 
+        <Stack.Navigator
+            // Header hidden
             screenOptions={{
                 headerShown:false,
                 headerStyle:{
@@ -23,6 +24,7 @@ const AppStack = () => {
                 headerTintColor: Colors.red
             }}
         >
+            {/* Screens used */}
             <Stack.Screen 
                 name="Landing"
                 component={BadgesLanding}

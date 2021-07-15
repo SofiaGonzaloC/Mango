@@ -28,6 +28,7 @@ class BadgesDetail extends React.Component {
         this.props.navigation.setOptions({ title: item.name })
     }
 
+    // Function show badges which are selected as favorite
     getFavorite = async () => {
         try {
             const key = `favorite-${this.state.badge._id}`
@@ -40,6 +41,7 @@ class BadgesDetail extends React.Component {
         }
     }
 
+    // Toggle between if a badge is or not favorite
     toggleFavorite = () => {
         if (this.state.isFavorite) {
             this.removeFavorite()
@@ -48,6 +50,7 @@ class BadgesDetail extends React.Component {
         }
     }
 
+    // Function to select a badge as favorite
     addFavorite = async () => {
         const badge = JSON.stringify(this.state.badge)
         const key = `favorite-${this.state.badge._id}`
@@ -59,6 +62,7 @@ class BadgesDetail extends React.Component {
         }
     }
 
+    // Function to remove a badge from favorites
     removeFavorite = async () => {
         const key = `favorite-${this.state.badge._id}`
         await Storage.instance.remove(key)
@@ -81,7 +85,6 @@ class BadgesDetail extends React.Component {
                     />
 
                 </View>
-                {/* The below component displays a warning */}
                 <TouchableOpacity
                     style={styles.favorite}
                     onPress={this.toggleFavorite}

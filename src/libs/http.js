@@ -3,6 +3,7 @@ const BASE_URL = 'https://api-badges-sgc.herokuapp.com';
 class Http {
     static instance = new Http();
 
+    // Retrieves all badges
     get_all = async () => {
         try{
             let request = await fetch(`${BASE_URL}/all/`)
@@ -13,6 +14,7 @@ class Http {
             throw Error(err)
         }
     }
+    // Retrieves information of a badge
     get = async badgeId => {
         try{
             let request = await fetch(`${BASE_URL}/_id:${badgeId}/`)
@@ -22,7 +24,8 @@ class Http {
             console.log('http get method err', err)
             throw Error(err)
         }
-    }   
+    }
+    // Puts a new badge in case there's any new
     post = async badge => {
         try{
             let request = await fetch(`${BASE_URL}/new/`, {
@@ -36,6 +39,7 @@ class Http {
             throw Error(err)
         }
     }
+    // Edits the information of a badge
     put = async (badgeId, body) => {
         console.log(badgeId)
         console.log(body)
@@ -60,6 +64,7 @@ class Http {
         }
     }
 
+    // Erases a selected badge
     remove = async badgeId => {
         try{
             let request = await fetch(`${BASE_URL}/_id:${badgeId}`,{

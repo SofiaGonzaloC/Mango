@@ -5,6 +5,7 @@ import Storage from "./storage"
 class UserSession {
     static instance = new UserSession()
 
+    // Makes  POST method to login a user using their username and password
     login = async body => {
         try {
             let request = await fetch(`${USERS_URL}/users/login/`, {
@@ -41,6 +42,7 @@ class UserSession {
         }
     }
 
+    // Makes a POST method connecting to the selected URL to make a new user
     signup = async body => {
         try {
             await fetch(`${USERS_URL}/users/signup/`, {
