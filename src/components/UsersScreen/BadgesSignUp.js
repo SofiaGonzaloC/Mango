@@ -35,7 +35,13 @@ class Login extends React.Component {
                 <View style={styles.inputContainer}>
                   <TextInput
                     style={styles.form}
-                    placeholder="Name"
+                    placeholder="Username"
+                    placeholderTextColor={Colors.black}
+                    />
+                  <TextInput
+                    secureTextEntry={true}
+                    style={styles.form}
+                    placeholder="Email"
                     placeholderTextColor={Colors.black}
                     />
                   <TextInput
@@ -47,21 +53,9 @@ class Login extends React.Component {
                   <TextInput
                     secureTextEntry={true}
                     style={styles.form}
-                    placeholder="Age"
+                    placeholder="Password Confirmation"
                     placeholderTextColor={Colors.black}
                     />
-                  <TextInput
-                    secureTextEntry={true}
-                    style={styles.form}
-                    placeholder="City"
-                    placeholderTextColor={Colors.black}
-                    />
-                  <TextInput
-                    secureTextEntry={true}
-                    style={styles.form}
-                    placeholder="Email"
-                    placeholderTextColor={Colors.black}
-                  />
                 </View>
 
                 <TouchableOpacity
@@ -129,7 +123,7 @@ const styles = StyleSheet.create({
       height: 5,
     },
 
-    height: 460,
+    height: 440,
 
     marginTop: -30,
 
@@ -169,7 +163,7 @@ const styles = StyleSheet.create({
 
     borderBottomWidth: 1,
 
-    marginBottom: 30,
+    marginBottom: 37,
 
     width: 150,
 
@@ -181,9 +175,7 @@ const styles = StyleSheet.create({
 
     padding: 15,
 
-    marginTop: 440,
-
-    // marginBottom: 0,
+    marginTop: 400,
 
     borderRadius: 15,
 
