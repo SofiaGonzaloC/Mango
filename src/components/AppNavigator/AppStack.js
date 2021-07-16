@@ -7,7 +7,6 @@ import BadgesLanding from "../BadgesLanding/BadgesLanding"
 import BadgesLogin from "../UsersScreen/BadgesLogin"
 import BadgesSignup from "../UsersScreen/BadgesSignUp"
 import BadgesScreen from '../BadgesScreen/BadgesScreen'
-import BadgesInformation from '../BadgesInformation/BadgesInformation'
 
 const Stack = createStackNavigator()
 
@@ -35,7 +34,6 @@ const AppStack = () => {
             <Stack.Screen name="BadgesLogin" component={BadgesLogin}/>
             <Stack.Screen name="Badges" component={BadgesScreen}/>
             <Stack.Screen name="BadgesSignup" component={BadgesSignup}/>
-            <Stack.Screen name="BadgesInformation" component={BadgesInformation}/>
         </Stack.Navigator>
     );
 }
