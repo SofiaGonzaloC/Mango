@@ -80,12 +80,12 @@ class Login extends React.Component {
 
               {/* IF login is incorrect : */}
               {error ? (
-                  <View style={styles.errorContainer}>
-                    <Text style={styles.errorMsg}>
-                      {'Invalid Username or password. PLease try again'}
-                    </Text>
-                  </View>
-                ) : null}
+                <View style={styles.errorContainer}>
+                  <Text style={styles.errorMsg}>
+                    {'Invalid Username or password. Please try again'}
+                  </Text>
+                </View>
+              ) : null}
 
               {/* Username */}
               <TextInput
@@ -126,10 +126,8 @@ class Login extends React.Component {
 
             </View>
 
-            <TouchableOpacity
-              style={styles.darkButton}
-            >
-              <Text style={{ color: Colors.white, fontSize: 25 }}>LOGIN</Text>
+            <TouchableOpacity style={styles.darkButton}>
+              <Text style={{ color: Colors.white, fontSize: 25 }} onPress={this.handleSubmit}>LOGIN</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
