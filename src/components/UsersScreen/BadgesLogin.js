@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import styles from './styles';
 import UserSession from '../../libs/sessions';
+import Loader from "../Generic/Loader"
 
 const Background = {
   uri: `https://images.unsplash.com/photo-1501746877-14782df58970?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8bWFuZ298ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60`,
@@ -42,7 +43,7 @@ class Login extends React.Component {
       this.setState({ loading: false, error: err })
     }
     if (this.state.user) { /* If user exists move to v screen */
-      this.props.navigation.replace('BadgesTabNavigator')
+      this.props.navigation.navigate('BadgesTabNavigator')
     }
   }
 
@@ -50,7 +51,7 @@ class Login extends React.Component {
     this.props.navigation.replace('BadgesSignup')
   };
 
-  toggleIsPassword = () => {
+  toggleIsPasswordVisible = () => {
     if (this.state.isPasswordVisible) {
       this.setState({ isPasswordVisible: false })
     } else {
@@ -60,6 +61,12 @@ class Login extends React.Component {
 
   render() {
     const { isPasswordVisible, loading, error } = this.state
+
+    // Shows loader if screen is not ready to be shown
+    if (loading == true) {
+      return <Loader />
+    }
+
     return (
       <ScrollView>
         <View style={styles.container}>
@@ -67,7 +74,6 @@ class Login extends React.Component {
           <ImageBackground source={Background} style={styles.image}>
             <View style={styles.layerColor}>
               <Text style={styles.title}>Login</Text>
-
 
               <View style={styles.login}>
 
@@ -96,31 +102,33 @@ class Login extends React.Component {
                     }}
                   />
 
-                  {/* Password input */}
-                  <TextInput
-                    style={styles.form}
-                    secureTextEntry={true}
-                    placeholder={"Password"}
-                    placeholderTextColor={Colors.black}
-                    onChangeText={text => {
-                      this.setState(prevState => {
-                        let form = Object.assign({}, prevState.form)
-                        form.password = text
-                        return { form }
-                      })
-                    }}
-                  />
-                  
-                  {/* <TouchableOpacity onPress={this.toggleIsPasswordVisible}>
-                    <image
-                      style={{marginRight: 10}}
-                      source={
-                        isPasswordVisible
-                        ? require("../../assets/show.png")
-                        : require("../../assets/hide.png")
-                      }
+                  <View style={styles.password}>
+                    {/* Password input */}
+                    <TextInput
+                      style={styles.form}
+                      secureTextEntry={isPasswordVisible}
+                      placeholder={"Password"}
+                      placeholderTextColor={Colors.black}
+                      onChangeText={text => {
+                        this.setState(prevState => {
+                          let form = Object.assign({}, prevState.form)
+                          form.password = text
+                          return { form }
+                        })
+                      }}
                     />
-                  </TouchableOpacity> */}
+                    <TouchableOpacity onPress={this.toggleIsPasswordVisible}>
+                      <Image
+                        style={styles.isPasswordVisible}
+                        source={
+                          isPasswordVisible
+                            ? require("../../assets/show.png")
+                            : require("../../assets/hide.png")
+                        }
+                      />
+                    </TouchableOpacity>
+                  </View>
+
                 </View>
 
                 <TouchableOpacity

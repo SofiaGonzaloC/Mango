@@ -56,11 +56,12 @@ const styles = StyleSheet.create({
     },
 
     layerColor: {
-        // flex: 2,
+        flex: 2,
 
         justifyContent: 'center',
 
         alignItems: 'center',
+
     },
 
     title: {
@@ -76,7 +77,7 @@ const styles = StyleSheet.create({
         color: Colors.black,
     },
 
-    errorContainer:{
+    errorContainer: {
         backgroundColor: Colors.red,
         padding: 15,
         position: 'absolute',
@@ -86,7 +87,7 @@ const styles = StyleSheet.create({
         borderRadius: 5
     },
 
-    errorMsg:{
+    errorMsg: {
         color: Colors.white
     },
 
@@ -98,7 +99,7 @@ const styles = StyleSheet.create({
             height: 5,
         },
 
-        height: 250,
+        height: 280,
 
         marginTop: -30,
 
@@ -110,37 +111,39 @@ const styles = StyleSheet.create({
 
         backgroundColor: Colors.white,
 
-        width: 261,
+        width: 280,
 
         borderRadius: 15,
-
-        display: 'flex',
 
         alignItems: 'center',
 
         zIndex: 1,
 
-        position: 'relative',
     },
 
     inputContainer: {
         paddingTop: 40,
 
         marginBottom: -30,
+
+
+    },
+
+    password: {
+        display: 'flex',
+
+        justifyContent: 'center',
+
+        alignItems: 'center'
     },
 
     form: {
-        paddingHorizontal: 20,
-
-        color: Colors.black,
-
-        borderBottomColor: Colors.black,
 
         borderBottomWidth: 1,
 
         marginBottom: 30,
 
-        width: 150,
+        width: 180,
 
         textAlign: 'center',
     },
@@ -199,7 +202,7 @@ const styles = StyleSheet.create({
 
         padding: 15,
 
-        marginTop: 220,
+        marginTop: 250,
 
         // marginBottom: 0,
 
