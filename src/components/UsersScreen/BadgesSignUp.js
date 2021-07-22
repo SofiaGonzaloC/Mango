@@ -129,7 +129,6 @@ class SignUp extends React.Component {
                 />
                 <TouchableOpacity onPress={this.toggleIsPasswordConfVisible}>
                   <Image
-                    // style={{display: 'flex'}}
                     source={
                       isPasswordVisible
                         ? require("../../assets/show.png")
@@ -141,8 +140,10 @@ class SignUp extends React.Component {
 
             </View>
 
-            <TouchableOpacity>
-              <Text>SIGN UP</Text>
+            <TouchableOpacity
+              style={styles.darkButton}
+            >
+              <Text style={{color:Colors.white, fontSize: 20}}>SIGN UP</Text>
             </TouchableOpacity>
           </View>
         </ImageBackground>
@@ -176,7 +177,7 @@ const styles = StyleSheet.create({
     fontSize: 35,
     fontWeight: 'bold',
 
-    marginBottom: 20
+    marginBottom: 40
   },
 
   formContainer: {
@@ -202,12 +203,28 @@ const styles = StyleSheet.create({
     borderRadius: 10,
 
     width: 200,
+
     display: 'flex',
     alignItems: 'stretch',
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between'
   },
+
+  darkButton: {
+    backgroundColor: Colors.black,
+    
+    width: '50%',
+    height: '12%',
+
+    marginTop: 30,
+
+    borderRadius: 20,
+
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  }
 })
 
 export default SignUp
