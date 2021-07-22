@@ -50,6 +50,17 @@ const styles = StyleSheet.create({
     
         borderRadius: 20
       },
+
+      errorContainer: {
+        backgroundColor: Colors.red,
+
+        height: 50,
+      },
+
+      errorMsg: {
+        color: Colors.white,
+        fontSize: 15
+      },
     
       formContent: {
         color: Colors.black,
