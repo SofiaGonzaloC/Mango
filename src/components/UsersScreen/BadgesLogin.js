@@ -80,17 +80,24 @@ class Login extends React.Component {
 
               {/* IF login is incorrect : */}
               {error ? (
-                <View style={styles.errorContainer}>
-                  <Text style={styles.errorMsg}>
-                    {'There was a problem with your signup. Try again.'}
-                  </Text>
-                </View>
-              ) : null}
+                  <View style={styles.errorContainer}>
+                    <Text style={styles.errorMsg}>
+                      {'Invalid Username or password. PLease try again'}
+                    </Text>
+                  </View>
+                ) : null}
 
               {/* Username */}
               <TextInput
                 placeholder={"Username"}
                 style={styles.formContent}
+                onChangeText={text => {
+                  this.setState(prevState => {
+                    let form = Object.assign({}, prevState.form)
+                    form.username = text
+                    return { form }
+                  })
+                }}
               />
 
               {/* Password */}
@@ -98,7 +105,6 @@ class Login extends React.Component {
                 <TextInput
                   placeholder={"Password"}
                   secureTextEntry={isPasswordVisible}
-
                   onChangeText={text => {
                     this.setState(prevState => {
                       let form = Object.assign({}, prevState.form)
