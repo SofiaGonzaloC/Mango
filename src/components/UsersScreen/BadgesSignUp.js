@@ -61,9 +61,11 @@ class SignUp extends React.Component {
     return (
       <ScrollView>
         <StatusBar backgroundColor="transparent" translucent={true} />
-        <View style={styles.container}>
-          <ImageBackground source={Background} style={styles.image}>
-            <Text>Create an Account !</Text>
+        <ImageBackground source={Background} style={styles.image}>
+          <View style={styles.container}>
+
+            <Text style={styles.title}>Create an Account !</Text>
+
             <View style={styles.formContainer}>
 
               {/* IF login is incorrect : */}
@@ -78,32 +80,72 @@ class SignUp extends React.Component {
               {/* Username */}
               <TextInput
                 placeholder={"Username"}
+                style={styles.formContent}
               />
 
               {/* Email */}
               <TextInput
                 placeholder={"Email"}
+                style={styles.formContent}
               />
 
               {/* Password */}
-              <TextInput
-                placeholder={"Password"}
-                secureTextEntry={isPasswordVisible}
-              />
+              <View style={styles.formContent}>
+                <TextInput
+                  placeholder={"Password"}
+                  secureTextEntry={isPasswordVisible}
+
+                  onChangeText={text => {
+                    this.setState(prevState => {
+                      let form = Object.assign({}, prevState.form)
+                      form.password = text
+                      return { form }
+                    })
+                  }}
+                />
+                <TouchableOpacity onPress={this.toggleIsPasswordVisible}>
+                  <Image
+                    source={
+                      isPasswordVisible
+                        ? require("../../assets/show.png")
+                        : require("../../assets/hide.png")
+                    }
+                  />
+                </TouchableOpacity>
+              </View>
 
               {/* Password Confirmation */}
-              <TextInput
-                placeholder={"Password Confirmation"}
-                secureTextEntry={isPasswordConfVisible}
-              />
+              <View style={styles.formContent}>
+                <TextInput
+                  placeholder={"Password Conf"}
+                  secureTextEntry={isPasswordConfVisible}
+                  onChangeText={text => {
+                    this.setState(prevState => {
+                      let form = Object.assign({}, prevState.form)
+                      form.password = text
+                      return { form }
+                    })
+                  }}
+                />
+                <TouchableOpacity onPress={this.toggleIsPasswordConfVisible}>
+                  <Image
+                    // style={{display: 'flex'}}
+                    source={
+                      isPasswordVisible
+                        ? require("../../assets/show.png")
+                        : require("../../assets/hide.png")
+                    }
+                  />
+                </TouchableOpacity>
+              </View>
 
             </View>
 
             <TouchableOpacity>
               <Text>SIGN UP</Text>
             </TouchableOpacity>
-          </ImageBackground>
-        </View>
+          </View>
+        </ImageBackground>
       </ScrollView>
     );
   }
@@ -117,17 +159,54 @@ const styles = StyleSheet.create({
 
     justifyContent: 'center',
 
-    backgroundColor: Colors.yellow,
+    height: '100%',
 
-    height: '100%'
+    display: 'flex',
+    alignItems: 'center'
+
   },
 
   image: {
-    flex: 1,
-    marginTop: -130,
-    paddingTop: 205,
-    paddingBottom: 130,
-    marginBottom: -75,
+    paddingTop: 50,
+    paddingBottom: 180,
+  },
+
+  title: {
+    color: Colors.black,
+    fontSize: 35,
+    fontWeight: 'bold',
+
+    marginBottom: 20
+  },
+
+  formContainer: {
+
+    backgroundColor: Colors.white,
+
+    display: 'flex',
+    alignItems: 'center',
+
+    width: 300,
+
+    borderRadius: 20
+  },
+
+  formContent: {
+    color: Colors.black,
+
+    marginTop: 15,
+    marginBottom: 15,
+
+    borderColor: Colors.blue,
+    borderBottomWidth: 1,
+    borderRadius: 10,
+
+    width: 200,
+    display: 'flex',
+    alignItems: 'stretch',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between'
   },
 })
 
