@@ -33,18 +33,18 @@ class BadgesItem extends React.Component {
                                 source={require('../../assets/edit_icon.png')}
                             />
                         </Pressable>
-                    ) : null }
+                    ) : null}
 
                     {/* Displays icon for delete option */}
-                    {this.props.onDelete ?(
-                        <Pressable onPress={this.props.onDelete}>
+                    {this.props.onDelete
+                        ? (<Pressable onPress={this.props.onDelete}>
                             <Image
                                 style={styles.deleteIcon}
                                 source={require('../../assets/delete_icon.png')}
                             />
-                        </Pressable>
-                    ) : null}
-                    
+                        </Pressable>)
+                        : null}
+
                 </View>
             </View>
         )
