@@ -4,234 +4,102 @@ import Colors from "../../res/Colors"
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-
+    
         flexDirection: 'column',
-
+    
         justifyContent: 'center',
-
-        backgroundColor: Colors.yellow,
-
-        height: '100%'
-
-    },
-
-    image: {
-        flex: 1,
-        marginTop: -130,
-        paddingTop: 205,
-        paddingBottom: 130,
-        // marginBottom: -75,
-    },
-
-    logoContainer: {
-        alignSelf: 'center',
-        marginTop: -100,
-        shadowColor: '#000',
-        shadowOffset: {
-            width: 0,
-            height: 12,
-        },
-        shadowOpacity: 0.5,
-        shadowRadius: 12.0,
-        elevation: 20,
-
-        backgroundColor: Colors.white,
-
-        width: 110,
-        height: 110,
-        resizeMode: 'cover',
-        borderRadius: 90,
-        position: 'absolute',
-
-        zIndex: 2,
-    },
-
-    logo: {
-        width: 105,
-        height: 105,
-        justifyContent: 'center',
-        alignSelf: 'center',
-
-        zIndex: 2,
-    },
-
-    layerColor: {
-        flex: 2,
-
-        justifyContent: 'center',
-
-        alignItems: 'center',
-
-    },
-
-    title: {
-
-        marginBottom: 50,
-
-        fontSize: 100,
-
-        fontWeight: 'bold',
-
-        fontSize: 20,
-
-        color: Colors.black,
-    },
-
-    errorContainer: {
-        backgroundColor: Colors.red,
-        padding: 15,
-        position: 'absolute',
-        marginBottom: 100,
-        marginTop: -40,
-        zIndex: 10,
-        borderRadius: 5
-    },
-
-    errorMsg: {
-        color: Colors.white
-    },
-
-    login: {
-        shadowColor: '#000',
-
-        shadowOffset: {
-            width: 0,
-            height: 5,
-        },
-
-        height: 280,
-
-        marginTop: -30,
-
-        shadowOpacity: 0.36,
-
-        shadowRadius: 6.68,
-
-        elevation: 11,
-
-        backgroundColor: Colors.white,
-
-        width: 280,
-
-        borderRadius: 15,
-
-        alignItems: 'center',
-
-        zIndex: 1,
-
-    },
-
-    inputContainer: {
-        paddingTop: 40,
-
-        marginBottom: -30,
-
-
-    },
-
-    password: {
+    
+        height: '100%',
+    
         display: 'flex',
-
-        justifyContent: 'center',
-
         alignItems: 'center'
-    },
-
-    form: {
-
-        borderBottomWidth: 1,
-
-        marginBottom: 30,
-
-        width: 180,
-
-        textAlign: 'center',
-    },
-
-    signup: {
-        display: 'flex',
-
-        justifyContent: 'center',
-
-        alignItems: 'center',
-
-        marginTop: 50,
-
-        marginBottom: 50,
-
-    },
-
-    signupText: {
-        marginTop: 80,
-
+    
+      },
+    
+      image: {
+        paddingTop: 50,
+        paddingBottom: 180,
+      },
+    
+      title: {
         color: Colors.black,
-    },
-
-    buttonLight: {
-        width: 140,
-        height: 50,
-
-        padding: 15,
-
-        marginTop: 40,
-
-        borderRadius: 15,
-
-        backgroundColor: Colors.white,
-
-        borderColor: Colors.black,
-
-        borderWidth: 2.5,
-
-        position: 'relative'
-    },
-
-    buttonLightText: {
-        textAlign: 'center',
-
-        fontSize: 10,
-
+        fontSize: 35,
         fontWeight: 'bold',
+    
+        marginBottom: 40
+      },
 
-        paddingHorizontal: 25,
-
-        color: Colors.black,
-    },
-    buttonDark: {
-        width: 193,
-
-        padding: 15,
-
-        marginTop: 250,
-
-        // marginBottom: 0,
-
-        borderRadius: 15,
-
-        backgroundColor: Colors.black,
-
-        borderColor: Colors.black,
-
-        borderWidth: 1,
-
-        justifyContent: 'center',
-
-        zIndex: 5,
-
-        position: 'absolute',
-    },
-
-    buttonDarkText: {
-        textAlign: 'center',
-
-        fontSize: 18,
-
-        fontWeight: 'bold',
-
-        paddingHorizontal: 25,
-
+      lightTitle:{
         color: Colors.white,
-    },
+        fontSize: 35,
+        fontWeight: 'bold',
+    
+        marginBottom: 40,
+        marginTop: 20
+      },
+    
+      formContainer: {
+    
+        backgroundColor: Colors.white,
+    
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    
+        width: 250,
+    
+        borderRadius: 20
+      },
+    
+      formContent: {
+        color: Colors.black,
+    
+        marginTop: 15,
+        marginBottom: 15,
+    
+        borderColor: Colors.blue,
+        borderBottomWidth: 1,
+        borderRadius: 10,
+    
+        width: 200,
+    
+        display: 'flex',
+        alignItems: 'stretch',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between'
+      },
+    
+      darkButton: {
+        backgroundColor: Colors.black,
+        
+        width: '50%',
+        height: '15%',
+    
+        marginTop: 30,
+    
+        borderRadius: 20,
+    
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+      },
+
+      lightButton: {
+        backgroundColor: Colors.white,
+        
+        width: '30%',
+        height: '12%',
+    
+        marginTop: 30,
+    
+        borderRadius: 20,
+    
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+      },
+
 })
 
 export default styles
