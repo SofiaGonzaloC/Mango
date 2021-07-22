@@ -52,6 +52,7 @@ class Login extends React.Component {
   };
 
   toggleIsPasswordVisible = () => {
+    // Alternates between true or false to change view and logo of password
     if (this.state.isPasswordVisible) {
       this.setState({ isPasswordVisible: false })
     } else {
@@ -69,88 +70,71 @@ class Login extends React.Component {
 
     return (
       <ScrollView>
-        <View style={styles.container}>
-          <StatusBar backgroundColor="transparent" translucent={true} />
-          <ImageBackground source={Background} style={styles.image}>
-            <View style={styles.layerColor}>
-              <Text style={styles.title}>Login</Text>
+        <StatusBar backgroundColor="transparent" translucent={true} />
+        <ImageBackground source={Background} style={styles.image}>
+          <View style={styles.container}>
 
-              <View style={styles.login}>
+            <Text style={styles.title, styles.lightTitle}> Login !</Text>
 
-                {/* IF login is incorrect : */}
-                {error ? (
-                  <View style={styles.errorContainer}>
-                    <Text style={styles.errorMsg}>
-                      {'Invalid Username or password. PLease try again'}
-                    </Text>
-                  </View>
-                ) : null}
+            <View style={styles.formContainer}>
 
-                {/* user input */}
-                <View style={styles.inputContainer}>
-
-                  <TextInput
-                    style={styles.form}
-                    placeholder={"Username"}
-                    placeholderTextColor={Colors.black}
-                    onChangeText={text => {
-                      this.setState(prevState => {
-                        let form = Object.assign({}, prevState.form)
-                        form.username = text
-                        return { form }
-                      })
-                    }}
-                  />
-
-                  <View style={styles.password}>
-                    {/* Password input */}
-                    <TextInput
-                      style={styles.form}
-                      secureTextEntry={isPasswordVisible}
-                      placeholder={"Password"}
-                      placeholderTextColor={Colors.black}
-                      onChangeText={text => {
-                        this.setState(prevState => {
-                          let form = Object.assign({}, prevState.form)
-                          form.password = text
-                          return { form }
-                        })
-                      }}
-                    />
-                    <TouchableOpacity onPress={this.toggleIsPasswordVisible}>
-                      <Image
-                        style={styles.isPasswordVisible}
-                        source={
-                          isPasswordVisible
-                            ? require("../../assets/show.png")
-                            : require("../../assets/hide.png")
-                        }
-                      />
-                    </TouchableOpacity>
-                  </View>
-
+              {/* IF login is incorrect : */}
+              {error ? (
+                <View style={styles.errorContainer}>
+                  <Text style={styles.errorMsg}>
+                    {'There was a problem with your signup. Try again.'}
+                  </Text>
                 </View>
+              ) : null}
 
-                <TouchableOpacity
-                  style={styles.buttonDark}
-                  onPress={this.handleSubmit}>
-                  <Text style={styles.buttonDarkText}>LOGIN</Text>
+              {/* Username */}
+              <TextInput
+                placeholder={"Username"}
+                style={styles.formContent}
+              />
+
+              {/* Password */}
+              <View style={styles.formContent}>
+                <TextInput
+                  placeholder={"Password"}
+                  secureTextEntry={isPasswordVisible}
+
+                  onChangeText={text => {
+                    this.setState(prevState => {
+                      let form = Object.assign({}, prevState.form)
+                      form.password = text
+                      return { form }
+                    })
+                  }}
+                />
+                <TouchableOpacity onPress={this.toggleIsPasswordVisible}>
+                  <Image
+                    source={
+                      isPasswordVisible
+                        ? require("../../assets/show.png")
+                        : require("../../assets/hide.png")
+                    }
+                  />
                 </TouchableOpacity>
               </View>
 
             </View>
 
-            <View style={styles.signup}>
-              <TouchableOpacity
-                style={styles.buttonLight}
-                onPress={this.handlePress}
-              >
-                <Text style={styles.buttonLightText}>SIGN UP</Text>
-              </TouchableOpacity>
-            </View>
-          </ImageBackground>
+            <TouchableOpacity
+              style={styles.darkButton}
+            >
+              <Text style={{ color: Colors.white, fontSize: 25 }}>LOGIN</Text>
+            </TouchableOpacity>
 
-        </View>
+            <TouchableOpacity
+              style={styles.lightButton}
+              onPress={this.handlePress}
+            >
+              <Text style={{ color: Colors.black, fontSize: 10 }}>SIGNUP</Text>
+            </TouchableOpacity>
+
+          </View>
+        </ImageBackground>
       </ScrollView>
     );
   }
