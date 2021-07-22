@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import Loader from "../Generic/Loader"
 import UserSession from "../../libs/sessions"
+import styles from './styles';
 
 const Background = {
   uri: `https://images.unsplash.com/photo-1570911831871-143ead9965e7?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fHdhdGVybWVsb258ZW58MHwxfDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60`,
@@ -142,6 +143,7 @@ class SignUp extends React.Component {
 
             <TouchableOpacity
               style={styles.darkButton}
+              onPress={this.handlePress}
             >
               <Text style={{color:Colors.white, fontSize: 20}}>SIGN UP</Text>
             </TouchableOpacity>
@@ -151,80 +153,5 @@ class SignUp extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-
-    flexDirection: 'column',
-
-    justifyContent: 'center',
-
-    height: '100%',
-
-    display: 'flex',
-    alignItems: 'center'
-
-  },
-
-  image: {
-    paddingTop: 50,
-    paddingBottom: 180,
-  },
-
-  title: {
-    color: Colors.black,
-    fontSize: 35,
-    fontWeight: 'bold',
-
-    marginBottom: 40
-  },
-
-  formContainer: {
-
-    backgroundColor: Colors.white,
-
-    display: 'flex',
-    alignItems: 'center',
-
-    width: 300,
-
-    borderRadius: 20
-  },
-
-  formContent: {
-    color: Colors.black,
-
-    marginTop: 15,
-    marginBottom: 15,
-
-    borderColor: Colors.blue,
-    borderBottomWidth: 1,
-    borderRadius: 10,
-
-    width: 200,
-
-    display: 'flex',
-    alignItems: 'stretch',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between'
-  },
-
-  darkButton: {
-    backgroundColor: Colors.black,
-    
-    width: '50%',
-    height: '12%',
-
-    marginTop: 30,
-
-    borderRadius: 20,
-
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
-})
 
 export default SignUp
