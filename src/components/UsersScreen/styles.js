@@ -54,12 +54,12 @@ const styles = StyleSheet.create({
       errorContainer: {
         backgroundColor: Colors.red,
 
-        height: 50,
+        // height: 50,
       },
 
       errorMsg: {
         color: Colors.white,
-        fontSize: 15
+        fontSize: 12
       },
     
       formContent: {
