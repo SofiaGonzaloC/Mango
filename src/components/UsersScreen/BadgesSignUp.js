@@ -23,7 +23,7 @@ class SignUp extends React.Component {
 
   state = {
     loading: false,
-    error: null,
+    error: false,
     errors: [],
     user: undefined,
     isPasswordVisible: true,
@@ -49,11 +49,43 @@ class SignUp extends React.Component {
 
   // Sends to screen "badgeslogin"
   handlePress = () => {
-    this.props.navigation.replace('BadgesLogin')
+    this.props.navigation.navigate('BadgesLogin')
   };
 
+  handleSubmit = async () => {
+    try {
+      this.setState({ loading: true, error: false, user: undefined})
+      let response = await UserSession.instance.signup(this.state.form)
+      console.log(response)
+      if (typeof response === 'object') {
+        let errors = []
+        let cont = 0
+
+        for (let error in response) {
+          errors.push( // Creates an array for errors
+            <View key={cont}>
+              <Text style={styles.errorMsg}>
+                {`${error} : ${response[error][0]}`}
+              </Text>
+            </View>
+          )
+          cont++
+        }
+        this.setState({
+          loading: false,
+          error: true,
+          user: undefined,
+          errors: errors
+        })
+      }
+    } catch (err) {
+      console.log("Sign up err", err)
+      throw Error(err)
+    }
+  }
+
   render() {
-    const { isPasswordVisible, isPasswordConfVisible, loading, error } = this.state
+    const { isPasswordVisible, isPasswordConfVisible, loading, errors, error } = this.state
 
     if (loading == true) {
       return <Loader />
@@ -70,24 +102,38 @@ class SignUp extends React.Component {
             <View style={styles.formContainer}>
 
               {/* IF login is incorrect : */}
-              {error ? (
-                <View style={styles.errorContainer}>
-                  <Text style={styles.errorMsg}>
-                    {'There was a problem with your signup. Try again.'}
-                  </Text>
-                </View>
-              ) : null}
+              {error
+                ? (<View style={styles.errorContainer}>
+                  {errors}
+                </View>)
+                : null
+              }
 
               {/* Username */}
               <TextInput
                 placeholder={"Username"}
                 style={styles.formContent}
+                onChangeText={text => {
+                  this.setState(prevState => {
+                    let form = Object.assign({}, prevState.form)
+                    form.username = text
+                    return { form }
+                  })
+                }}
               />
 
               {/* Email */}
               <TextInput
                 placeholder={"Email"}
+                keyboardType='email-address'
                 style={styles.formContent}
+                onChangeText={text => {
+                  this.setState(prevState => {
+                    let form = Object.assign({}, prevState.form)
+                    form.email = text
+                    return { form }
+                  })
+                }}
               />
 
               {/* Password */}
@@ -123,7 +169,7 @@ class SignUp extends React.Component {
                   onChangeText={text => {
                     this.setState(prevState => {
                       let form = Object.assign({}, prevState.form)
-                      form.password = text
+                      form.password_confirmation = text
                       return { form }
                     })
                   }}
@@ -131,7 +177,7 @@ class SignUp extends React.Component {
                 <TouchableOpacity onPress={this.toggleIsPasswordConfVisible}>
                   <Image
                     source={
-                      isPasswordVisible
+                      isPasswordConfVisible
                         ? require("../../assets/show.png")
                         : require("../../assets/hide.png")
                     }
@@ -143,9 +189,9 @@ class SignUp extends React.Component {
 
             <TouchableOpacity
               style={styles.darkButton}
-              onPress={this.handlePress}
+              onPress={this.handlePress, this.handleSubmit}
             >
-              <Text style={{color:Colors.white, fontSize: 20}}>SIGN UP</Text>
+              <Text style={{ color: Colors.white, fontSize: 20 }}>SIGN UP</Text>
             </TouchableOpacity>
           </View>
         </ImageBackground>
