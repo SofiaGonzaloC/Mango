@@ -52,10 +52,9 @@ class UserSession {
                 body: JSON.stringify(body),
             })
             let response = await request.json()
-            try{
-                console.log(typeof response.username)
+            if(typeof response.username === 'string'){
                 return response.username
-            }catch(err){
+            }else{
                 return response
             }
         } catch (err) {
