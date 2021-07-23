@@ -17,11 +17,9 @@ class UserSession {
             })
             let response = await request.json()
 
-            try {
-                let key = `token-${response.user.username}`
-                await Storage.instance.store(key, response.token)
+            if(typeof response.username === 'string') {
                 return response.user.username
-            } catch (err) {
+            } else {
                 return response
             }
 
@@ -45,7 +43,7 @@ class UserSession {
     // Makes a POST method connecting to the selected URL to make a new user
     signup = async body => {
         try {
-            await fetch(`${USERS_URL}/users/signup/`, {
+            let request = await fetch(`${USERS_URL}/users/signup/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -53,6 +51,13 @@ class UserSession {
                 },
                 body: JSON.stringify(body),
             })
+            let response = await request.json()
+            try{
+                console.log(typeof response.username)
+                return response.username
+            }catch(err){
+                return response
+            }
         } catch (err) {
             console.log('Signup Err', err)
             throw Error(err) // error obj to send errors
