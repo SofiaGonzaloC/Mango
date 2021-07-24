@@ -48,7 +48,7 @@ class Login extends React.Component {
   }
 
   handlePress = () => {
-    this.props.navigation.replace('BadgesSignup')
+    this.props.navigation.navigate('BadgesSignup')
   };
 
   toggleIsPasswordVisible = () => {
