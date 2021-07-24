@@ -23,7 +23,7 @@ class SignUp extends React.Component {
 
   state = {
     loading: false,
-    error: false,
+    error: undefined,
     errors: [],
     user: undefined,
     isPasswordVisible: true,
@@ -62,10 +62,17 @@ class SignUp extends React.Component {
         let cont = 0
 
         for (let error in response) {
+
+          let key = error
+
+          if(error==='non_field_errors'){
+            error = 'Password: '
+          }
+
           errors.push( // Creates an array for errors
             <View key={cont}>
               <Text style={styles.errorMsg}>
-                {`${error} : ${response[error][0]}`}
+                {`${error} : ${response[key][0]}`}
               </Text>
             </View>
           )
@@ -75,8 +82,17 @@ class SignUp extends React.Component {
           loading: false,
           error: true,
           user: undefined,
-          errors: errors
+          errors: undefined
         })
+      } else {
+        this.setState({
+          loading: false,
+          user: response,
+          errors: [],
+        })
+        if(this.state.user){
+          this.props.navigation.navigate('BadgesLogin')
+        }
       }
     } catch (err) {
       console.log("Sign up err", err)
