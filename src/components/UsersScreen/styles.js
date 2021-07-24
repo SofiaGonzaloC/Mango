@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     
       image: {
         paddingTop: 50,
-        paddingBottom: 180,
+        paddingBottom: 170,
       },
     
       title: {
@@ -50,16 +50,19 @@ const styles = StyleSheet.create({
     
         borderRadius: 20
       },
-
+      
       errorContainer: {
         backgroundColor: Colors.red,
+        
+        borderRadius: 10,
 
+        padding: 5
         // height: 50,
       },
 
       errorMsg: {
         color: Colors.white,
-        fontSize: 12
+        fontSize: 15
       },
     
       formContent: {
