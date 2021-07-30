@@ -3,8 +3,8 @@ import {Image} from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import BadgesStack from './BadgesStack'
 import Colors from '../../res/Colors'
-// import BadgesInformation from '../BadgesInformation/BadgesInformation'
 import FavoritesStack from '../Favorites/FavoritesStack'
+import ProfileStack from '../UsersScreen/ProfileStack'
 
 const Tabs = createBottomTabNavigator()
 
@@ -20,6 +20,18 @@ const BadgesTabNavigator = () => {
                 },
         }}>
             <Tabs.Screen
+                name="Favorites"
+                component={FavoritesStack}
+                options={{
+                    tabBarIcon: ({size, color}) => (
+                        <Image 
+                            style={{tintColor: color, width: size, height:size}}
+                            source={require("../../assets/notFavorite.png")}
+                        />
+                    ),
+                }}
+            />
+            <Tabs.Screen
                 name="Badges"
                 component={BadgesStack}
                 options={{
@@ -32,13 +44,13 @@ const BadgesTabNavigator = () => {
                 }}
             />
             <Tabs.Screen
-                name="Favorites"
-                component={FavoritesStack}
+                name="Profile"
+                component={ProfileStack}
                 options={{
                     tabBarIcon: ({size, color}) => (
                         <Image 
                             style={{tintColor: color, width: size, height:size}}
-                            source={require("../../assets/notFavorite.png")}
+                            source={require("../../assets/profile.png")}
                         />
                     ),
                 }}
