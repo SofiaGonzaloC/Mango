@@ -31,19 +31,24 @@ class Login extends React.Component {
   handleSubmit = async () => {
     try {
       this.setState({ loading: true, error: null, user: undefined })
-      let response = await UserSession.instance.login(this.state.form);
+      let response = await UserSession.instance.login(this.state.form)
 
       if (typeof response === 'object') {
         console.log(response)
-        this.setState({ loading: false, error: response, user: undefined })
+        if (response['405']) {
+          var message = "Account is not verified"
+        } else {
+          var message = "Invalid Username or password. Please try again"
+        }
+        this.setState({ loading: false, error: message, user: undefined })
       } else {
         this.setState({ loading: false, error: null, user: response })
       }
     } catch (err) {
       this.setState({ loading: false, error: err })
     }
-    if (this.state.user) { /* If user exists move to v screen */
-      this.props.navigation.navigate('BadgesTabNavigator')
+    if (this.state.user) {
+      this.props.navigation.replace('BadgesTabNavigator')
     }
   }
 
@@ -81,9 +86,7 @@ class Login extends React.Component {
               {/* IF login is incorrect : */}
               {error ? (
                 <View style={styles.errorContainer}>
-                  <Text style={styles.errorMsg}>
-                    {'Invalid Username or password. Please try again'}
-                  </Text>
+                  <Text style={styles.errorMsg}>{error}</Text>
                 </View>
               ) : null}
 
