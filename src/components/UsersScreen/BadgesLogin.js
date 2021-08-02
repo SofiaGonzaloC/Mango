@@ -32,9 +32,7 @@ class Login extends React.Component {
     try {
       this.setState({ loading: true, error: null, user: undefined })
       let response = await UserSession.instance.login(this.state.form)
-
       if (typeof response === 'object') {
-        console.log(response)
         if (response['405']) {
           var message = "Account is not verified"
         } else {

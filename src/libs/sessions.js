@@ -17,10 +17,13 @@ class UserSession {
             })
             let response = await request.json()
 
-            if(typeof response.username === 'string') {
-                return response.user.username
-            } else {
-                return response
+            try{
+                let key = `token-${response.user.username}`
+                await Storage.instance.store(key, response.token);
+                return response.user.username;
+            }catch(err){
+                console.log('login error',err);
+                throw Error(err);
             }
 
         } catch (err) {
