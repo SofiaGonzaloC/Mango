@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
     },
     header: {
         width: '100%',
-        height: '100%',
+        height: 90,
         borderTopLeftRadius: 25,
         borderTopRightRadius: 25,
     },
