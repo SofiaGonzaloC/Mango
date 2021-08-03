@@ -19,8 +19,11 @@ class Profile extends React.Component {
         this.getUserData()
     }
 
-    getUserData = async () => {
+    getUserData = async () => { //smn missing here
         let user = await UserSession.instance.getUser()
+        let token = await UserSession.instance.getToken(user.username)
+        this.setState({user: user, token: token})
+        console.log(this.state)
     }
 
     render() {

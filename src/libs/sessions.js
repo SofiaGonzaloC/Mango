@@ -73,13 +73,12 @@ class UserSession {
     }
 
     getUser = async () => {
-        try{
+        try {
             const allKeys = await Storage.instance.getAllKeys()
-            const data = allKeys.filter(key =>key.includes('id-'))
+            const data = allKeys.filter(key => key.includes('id-'))
             const user = await Storage.instance.get(data.toString())
-            console.log(JSON.parse(user))
-            return user
-        }catch(err){
+            return JSON.parse(user)
+        } catch (err) {
             console.log('Get user id err', err)
         }
     }
