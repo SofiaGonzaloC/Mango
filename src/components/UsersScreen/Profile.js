@@ -3,7 +3,8 @@ import {
     View,
     Text,
     ScrollView,
-    StyleSheet
+    StyleSheet,
+    Image
 } from "react-native"
 import { Colors } from "react-native/Libraries/NewAppScreen"
 import UserSession from "../../libs/sessions"
@@ -11,7 +12,8 @@ import UserSession from "../../libs/sessions"
 class Profile extends React.Component {
 
     state = {
-        user: undefined,
+        user: {},
+        // user: undefined // This was changed for ^, left just in case
         token: undefined,
     }
 
@@ -19,18 +21,21 @@ class Profile extends React.Component {
         this.getUserData()
     }
 
-    getUserData = async () => { //smn missing here
+    getUserData = async () => {
         let user = await UserSession.instance.getUser()
         let token = await UserSession.instance.getToken(user.username)
         this.setState({user: user, token: token})
         console.log(this.state)
     }
 
+    // USER VARIABLES NOT WORKING
+
     render() {
+        const {user} = this.state
         return (
             <ScrollView style={styles.scrollView}>
-                <View style={styles.container}>
-                    <Text>Profile</Text>
+            <View style={styles.container}>
+                    <Text>{user.username}</Text>
                 </View>
             </ScrollView>
         )
@@ -38,14 +43,21 @@ class Profile extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    scrollView: {
-        flex: 1
-    },
     container: {
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'center',
-        backgroundColor: Colors.yellow
+        alignItems: 'center'
+    },
+    dataInfo: {
+        marginTop: 20,
+        fontSize: 28,
+        fontWeight: 'bold',
+        marginHorizontal: 25,
+        color: Colors.white
+    },
+    smallText: {
+        color: Colors.yellow
     }
 })
 
