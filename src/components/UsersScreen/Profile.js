@@ -6,8 +6,23 @@ import {
     StyleSheet
 } from "react-native"
 import { Colors } from "react-native/Libraries/NewAppScreen"
+import UserSession from "../../libs/sessions"
 
 class Profile extends React.Component {
+
+    state = {
+        user: undefined,
+        token: undefined,
+    }
+
+    componentDidMount = () => {
+        this.getUserData()
+    }
+
+    getUserData = async () => {
+        let user = await UserSession.instance.getUser()
+    }
+
     render() {
         return (
             <ScrollView style={styles.scrollView}>

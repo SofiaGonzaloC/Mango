@@ -14,7 +14,6 @@ class Storage {
     }
 
     get = async key =>{
-    
         try{
             return await AsyncStorage.getItem(key)
         }catch(err){
@@ -29,6 +28,16 @@ class Storage {
         }catch(err){
             console.log('Storage multiget err', err)
             throw Error(err)
+        }
+    }
+
+    multiRemove = async keys => { // Deletes all elements in an array of keys
+        try{
+            await AsyncStorage.multiRemove(keys)
+            return true
+        }catch(err){
+            console.log('Multi remore err', err)
+            return false
         }
     }
 

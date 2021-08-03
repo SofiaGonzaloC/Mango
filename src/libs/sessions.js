@@ -17,12 +17,14 @@ class UserSession {
             })
             let response = await request.json()
 
-            try{
+            try {
                 let key = `token-${response.user.username}`
                 await Storage.instance.store(key, response.token);
-                return response.user.username;
-            }catch(err){
-                console.log('login error',err);
+                key = `id-${response.user.username}`
+                await Storage.instance.store(key, JSON.stringify(response.user));
+                return true
+            } catch (err) {
+                console.log('login error', err);
                 throw Error(err);
             }
 
@@ -35,7 +37,11 @@ class UserSession {
     logout = async key => {
         // Deletes token
         try {
-            await Storage.instance.remove(key)
+            const allkeys = await Storage.instance.getAllKeys()
+            const tokens = allkeys.filter(key => key.includes('token-'))
+            await Storage.instance.multiRemove(tokens)
+            const ids = allkeys.filter(key => key.includes('id-'))
+            await Storage.instance.multiRemove(ids)
             return true
         } catch (err) {
             console.log('Logout err', err)
@@ -55,9 +61,9 @@ class UserSession {
                 body: JSON.stringify(body),
             })
             let response = await request.json()
-            if(typeof response.username === 'string'){
+            if (typeof response.username === 'string') {
                 return response.username
-            }else{
+            } else {
                 return response
             }
         } catch (err) {
@@ -66,8 +72,21 @@ class UserSession {
         }
     }
 
-    getToken = async key => {
+    getUser = async () => {
+        try{
+            const allKeys = await Storage.instance.getAllKeys()
+            const data = allKeys.filter(key =>key.includes('id-'))
+            const user = await Storage.instance.get(data.toString())
+            console.log(JSON.parse(user))
+            return user
+        }catch(err){
+            console.log('Get user id err', err)
+        }
+    }
+
+    getToken = async username => {
         try {
+            const key = `token-${username}`
             return await Storage.instance.get(key)
         } catch (err) {
             console.log('Get token error', err)

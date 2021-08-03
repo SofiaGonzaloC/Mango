@@ -28,6 +28,14 @@ class Login extends React.Component {
     form: {},
   }
 
+  componentDidMount = () =>{
+    this.deleteTokens()
+  }
+
+  deleteTokens = async () =>{
+    await UserSession.instance.logout()
+  }
+
   handleSubmit = async () => {
     try {
       this.setState({ loading: true, error: null, user: undefined })
