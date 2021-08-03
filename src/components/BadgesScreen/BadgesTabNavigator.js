@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import BadgesStack from './BadgesStack'
 import Colors from '../../res/Colors'
 import FavoritesStack from '../Favorites/FavoritesStack'
-import ProfileStack from '../UsersScreen/ProfileStack'
+import UserStack from '../UsersScreen/UserStack'
 
 const Tabs = createBottomTabNavigator()
 
@@ -45,7 +45,7 @@ const BadgesTabNavigator = () => {
             />
             <Tabs.Screen
                 name="Profile"
-                component={ProfileStack}
+                component={UserStack}
                 options={{
                     tabBarIcon: ({size, color}) => (
                         <Image 
