@@ -27,7 +27,7 @@ class Profile extends React.Component {
         let user = await UserSession.instance.getUser()
         let token = await UserSession.instance.getToken(user.username)
         this.setState({ user: user, token: token })
-        console.log(this.state.user.profile.age)
+        console.log(this.state.user.profile.profile_picture)
     }
 
     render() {
@@ -37,11 +37,11 @@ class Profile extends React.Component {
                 <View style={styles.badge}>
                     <Image
                         style={styles.header}
-                        source={{ uri: `https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpixy.org%2Fsrc%2F480%2F4800346.jpg&f=1&nofb=1` }}
+                        source={{ uri: `${user.profile.header_img}` }}
                     />
                     <Image
                         style={styles.profileImage}
-                        source={{ uri: `https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpixy.org%2Fsrc%2F480%2F4800346.jpg&f=1&nofb=1` }}
+                        source={{ uri: `${user.profile.profile_picture}` }}
                     />
                 </View>
 
@@ -101,20 +101,24 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     username: {
-        color: Colors.yellow,
-        fontSize: 50
+        color: Colors.white,
+        fontSize: 28,
+        fontWeight: 'bold'
     },
     age:{
         color: Colors.white,
-        fontSize: 45
+        fontSize: 28,
+        fontWeight: '100'
     },
     name: {
         color: Colors.white,
-        fontSize: 30,
+        fontSize: 20,
+        fontWeight: 'bold',
         marginTop: 15
     },
     place: {
-        color: Colors.white
+        color: Colors.white,
+        fontSize: 18
     }
 
 })
