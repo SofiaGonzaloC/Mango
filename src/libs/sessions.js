@@ -92,6 +92,24 @@ class UserSession {
         }
     }
 
+    editProfile = async (id, token, body) => {
+        console.log(body)
+        try{
+            let request = await fetch(`${USERS_URL}/profile/${id}`,{
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    Authorization: `Token ${token}`
+                },
+                body: body
+            })
+            let response = await request.json()
+            return response
+        } catch (err) {
+            console.log("Edit profile error", err)
+        }
+    }
+
 }
 
 export default UserSession

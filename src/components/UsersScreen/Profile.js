@@ -4,8 +4,10 @@ import {
     Text,
     ScrollView,
     StyleSheet,
-    Image
+    Image,
+    TouchableOpacity
 } from "react-native"
+import { launchCamera, launchImageLibrary } from "react-native-image-picker"
 import Colors from "../../res/Colors"
 import UserSession from "../../libs/sessions"
 
@@ -15,7 +17,6 @@ class Profile extends React.Component {
         user: {
             profile: {}
         },
-        // user: undefined // This was changed for ^, left just in case
         token: {},
         picure: {}
     }
@@ -28,7 +29,44 @@ class Profile extends React.Component {
         let user = await UserSession.instance.getUser()
         let token = await UserSession.instance.getToken(user.username)
         this.setState({ user: user, token: token })
-        console.log(this.state.user.profile.profile_picture)
+    }
+
+    handleChooseProfileImage = () => {
+        const options = {}
+
+        // Chooses an image from the library
+        launchImageLibrary(options, response => {
+            let photo = response.assets[0].uri
+            this.setState({ picture: photo })
+        })
+
+        this.editProfilePicture
+
+        // Takes a new picture
+        // launchCamera (options, response =>{
+        //     console.log(response.assets[0].uri)
+        // })
+    }
+
+    editProfilePicture = () => {
+        const { user, token, picture } = this.state
+        let uploadData = new FormData()
+        uploadData.append('submit', 'ok')
+        uploadData.append('file', {
+            type: 'image/jpg',
+            uri: picture,
+            name: 'profile.jpg',
+        })
+        try {
+            let response = UserSession.instance.editProfile(
+                user.id,
+                token,
+                uploadData
+            )
+            console.log(response)
+        } catch (err) {
+            console.log('Edit profile picture error', err)
+        }
     }
 
     render() {
@@ -45,6 +83,14 @@ class Profile extends React.Component {
                         source={{ uri: `${user.profile.profile_picture}` }}
                     />
                 </View>
+                <TouchableOpacity
+                    style={styles.imageEdit}
+                    onPress={this.handleChooseProfileImage}
+                >
+                    <Image
+                        source={require('../../assets/edit_icon.png')}
+                    />
+                </TouchableOpacity>
 
                 <View style={styles.information}>
                     <View style={styles.top}>
@@ -93,7 +139,7 @@ const styles = StyleSheet.create({
         top: '20%',
         left: '21%',
     },
-    top:{
+    top: {
         flexDirection: 'row',
         justifyContent: 'center',
     },
@@ -106,7 +152,7 @@ const styles = StyleSheet.create({
         fontSize: 28,
         fontWeight: 'bold'
     },
-    age:{
+    age: {
         color: Colors.white,
         fontSize: 28,
         fontWeight: '100'
@@ -120,6 +166,10 @@ const styles = StyleSheet.create({
     place: {
         color: Colors.white,
         fontSize: 18
+    },
+    imageEdit: {
+        // position: 'absolute',
+        // marginRight: 50
     }
 
 })
