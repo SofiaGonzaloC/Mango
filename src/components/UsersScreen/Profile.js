@@ -17,6 +17,7 @@ class Profile extends React.Component {
         },
         // user: undefined // This was changed for ^, left just in case
         token: {},
+        picure: {}
     }
 
     componentDidMount = () => {
