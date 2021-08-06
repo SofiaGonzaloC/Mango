@@ -17,8 +17,8 @@ class Profile extends React.Component {
         user: {
             profile: {}
         },
-        token: {},
-        picure: {}
+        token: '',
+        picture: ''
     }
 
     componentDidMount = () => {
@@ -32,15 +32,17 @@ class Profile extends React.Component {
     }
 
     handleChooseProfileImage = () => {
-        const options = {}
+        const options = {
+            includeBase64: false,
+            mediaType: 'photo'
+        }
 
-        // Chooses an image from the library
         launchImageLibrary(options, response => {
             let photo = response.assets[0].uri
             this.setState({ picture: photo })
+            this.editProfilePicture()
         })
-
-        this.editProfilePicture
+        // Chooses an image from the library
 
         // Takes a new picture
         // launchCamera (options, response =>{
@@ -48,25 +50,16 @@ class Profile extends React.Component {
         // })
     }
 
-    editProfilePicture = () => {
+    editProfilePicture = async () => {
         const { user, token, picture } = this.state
-        let uploadData = new FormData()
-        uploadData.append('submit', 'ok')
-        uploadData.append('file', {
-            type: 'image/jpg',
-            uri: picture,
-            name: 'profile.jpg',
-        })
-        try {
-            let response = UserSession.instance.editProfile(
-                user.id,
-                token,
-                uploadData
-            )
-            console.log(response)
-        } catch (err) {
-            console.log('Edit profile picture error', err)
-        }
+
+        let response = await UserSession.instance.editProfile(
+            user.id,
+            token,
+            picture
+        )
+        console.log(response)
+        // this.setState({ user: response })
     }
 
     render() {

@@ -92,16 +92,26 @@ class UserSession {
         }
     }
 
-    editProfile = async (id, token, body) => {
-        console.log(body)
-        try{
-            let request = await fetch(`${USERS_URL}/profile/${id}`,{
+    editProfile = async (id, token, body) => {  
+        console.log(id);
+        console.log(token);
+        console.log(body);
+        let uploadData = new FormData()
+        uploadData.append( 'profile.profile_picture', {
+            type: 'image/jpeg',
+            uri: body,
+            name: 'profile.jpeg'
+        })
+
+        try {
+            let request = await fetch(`${USERS_URL}/profile/${id}/`, {
                 method: 'PATCH',
                 headers: {
+                    Accept: 'application/json',
                     'Content-Type': 'multipart/form-data',
-                    Authorization: `Token ${token}`
+                    Authorization: `Token ${token}`,
                 },
-                body: body
+                body: uploadData,
             })
             let response = await request.json()
             return response
