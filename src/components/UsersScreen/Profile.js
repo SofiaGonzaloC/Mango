@@ -36,11 +36,12 @@ class Profile extends React.Component {
             includeBase64: false,
             mediaType: 'photo'
         }
-
         launchImageLibrary(options, response => {
-            let photo = response.assets[0].uri
-            this.setState({ picture: photo })
-            this.editProfilePicture()
+            if (!response.didCancel) {
+                let photo = response.assets[0].uri
+                this.setState({ picture: photo })
+                this.editProfilePicture()
+            }
         })
         // Chooses an image from the library
 
@@ -63,7 +64,7 @@ class Profile extends React.Component {
     }
 
     render() {
-        const { user } = this.state
+        const { user, picture } = this.state
         return (
             <View style={styles.container}>
                 <View style={styles.badge}>
@@ -73,7 +74,7 @@ class Profile extends React.Component {
                     />
                     <Image
                         style={styles.profileImage}
-                        source={{ uri: `${user.profile.profile_picture}` }}
+                        source={{ uri: picture || `${user.profile.profile_picture}` }}
                     />
                 </View>
                 <TouchableOpacity
