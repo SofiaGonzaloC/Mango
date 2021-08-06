@@ -22,23 +22,24 @@ class BadgesDetail extends React.Component {
 
     getBadge = () => {
         const { item } = this.props.route.params
-        this.setState({ badge: item }), () => {
+        this.setState({ badge: item }, () => {
             this.getFavorite()
-        }
+        })
         this.props.navigation.setOptions({ title: item.name })
     }
-
+    
     // Function show badges which are selected as favorite
     getFavorite = async () => {
         try {
             const key = `favorite-${this.state.badge._id}`
             const favoriteStr = await Storage.instance.get(key)
             if (favoriteStr != null) {
-                this.setState({ isFavorite: null })
+                this.setState({ isFavorite: true })
             }
         } catch (err) {
             console.log('Get favorite err', err)
         }
+        console.log(this.state.isFavorite);
     }
 
     // Toggle between if a badge is or not favorite
